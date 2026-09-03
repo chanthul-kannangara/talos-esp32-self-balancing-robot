@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Production build outputs
+dist/
+build/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local runtime logs and temporary artifacts
+*.log
+.robot-bridge.*
+.vite-*
+work/
+outputs/
+.codex/
+.agents/
+.firebase/
+
+# OS / Editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

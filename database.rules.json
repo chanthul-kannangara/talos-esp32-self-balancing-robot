@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "robot": {
+      ".read": "auth != null",
+      "control": {
+        ".read": true,
+        ".write": "auth != null"
+      },
+      "status": {
+        ".read": "auth != null",
+        ".write": true
+      },
+      "camera": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    }
+  }
+}

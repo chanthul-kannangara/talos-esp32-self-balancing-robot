@@ -1,0 +1,21 @@
+{
+  "projects": {
+    "default": "esp32-self-balancing-robot"
+  },
+  "targets": {
+    "esp32-self-balancing-robot": {
+      "hosting": {
+        "bb-control": [
+          "bb-control"
+        ],
+        "talosbot": [
+          "talosbot"
+        ],
+        "talosone": [
+          "talosone"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
