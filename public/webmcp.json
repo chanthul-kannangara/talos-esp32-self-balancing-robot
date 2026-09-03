@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "webmcp_version": "1.0.0",
+  "name": "talos-robot-webmcp",
+  "title": "TALOS ESP32 Self-Balancing Robot WebMCP Server",
+  "description": "Exposes real-time teleoperation, attitude telemetry, PID tuning, active leg posture articulation, and safety interlocks via the W3C Web Model Context Protocol (WebMCP) standard.",
+  "homepage": "https://talosone.web.app/",
+  "author": {
+    "name": "Chanthul Kannangara",
+    "institution": "NSBM Green University",
+    "url": "https://www.linkedin.com/in/chanthul-kannangara-4554a22b3/"
+  },
+  "protocol": {
+    "type": "browser-native",
+    "api": "navigator.modelContext",
+    "fallback_api": "window.__WEBMCP__"
+  },
+  "tools": [
+    {
+      "name": "talos_get_telemetry",
+      "description": "Fetch live sensor telemetry, balance orientation (pitch, roll), battery level, armed state, and subsystem health from the TALOS robot.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "talos_motion_command",
+      "description": "Drive the robot with directional bias (stop, forward, backward, left, right). The deterministic 200 Hz FreeRTOS loop maintains balance while moving.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "type": "string",
+            "enum": [
+              "stop",
+              "forward",
+              "backward",
+              "left",
+              "right"
+            ],
+            "description": "The desired movement direction"
+          }
+        },
+        "required": [
+          "direction"
+        ]
+      }
+    },
+    {
+      "name": "talos_set_speed",
+      "description": "Set driving throttle and motion effort percentage (0 to 100%).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "speed": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Target speed percentage between 0 and 100"
+          }
+        },
+        "required": [
+          "speed"
+        ]
+      }
+    },
+    {
+      "name": "talos_set_armed",
+      "description": "Arm or disarm the balancing control loop. Arming activates the 200 Hz PID wheel motors. Disarming coasts the wheels safely.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "armed": {
+            "type": "boolean",
+            "description": "True to arm and balance, false to disarm into standby."
+          }
+        },
+        "required": [
+          "armed"
+        ]
+      }
+    },
+    {
+      "name": "talos_emergency_stop",
+      "description": "Immediate hardware emergency stop. Instantly disarms all wheel and leg actuators, cancels pending commands, and engages safety interlock.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "talos_set_leg_posture",
+      "description": "Articulate dual MG996R leg servos to adjust chassis ride height, ground clearance, and pitch trim.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "legPosition": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Leg extension percentage (0 = fully bent / low clearance, 100 = fully extended / high clearance)."
+          },
+          "legSpeed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Speed of transition (0 to 100 percent)."
+          }
+        },
+        "required": [
+          "legPosition",
+          "legSpeed"
+        ]
+      }
+    },
+    {
+      "name": "talos_toggle_leg_assist",
+      "description": "Enable or disable active dynamic balance leg assist. When active, leg servos dynamically flex to counteract tilt disturbances.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "True to enable active leg stabilization assist, false to disable."
+          }
+        },
+        "required": [
+          "enabled"
+        ]
+      }
+    },
+    {
+      "name": "talos_tune_pid",
+      "description": "Live-tune PID balance loop gains and wheel limits on the ESP32. Applied instantly over Wi-Fi/Firebase.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kp": {
+            "type": "number",
+            "minimum": 20,
+            "maximum": 250,
+            "description": "Proportional gain for tilt error (default: 80)."
+          },
+          "ki": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20,
+            "description": "Integral gain for steady-state offset (default: 0)."
+          },
+          "kd": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 30,
+            "description": "Derivative gyro rate damping gain (default: 2.5)."
+          },
+          "balanceTrimDeg": {
+            "type": "number",
+            "minimum": -5,
+            "maximum": 5,
+            "description": "Zero-angle mechanical pitch trim in degrees."
+          },
+          "predictionTimeMs": {
+            "type": "number",
+            "minimum": 10,
+            "maximum": 80,
+            "description": "Filter lead prediction horizon in milliseconds."
+          },
+          "maxWheelOutputUs": {
+            "type": "integer",
+            "minimum": 300,
+            "maximum": 500,
+            "description": "Max wheel servo pulse delta in microseconds."
+          },
+          "minActiveWheelOutputUs": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 450,
+            "description": "Deadband overcome pulse threshold in microseconds."
+          }
+        }
+      }
+    },
+    {
+      "name": "talos_set_fall_limit",
+      "description": "Configure maximum tilt safety limit. Exceeding this pitch angle triggers auto-shutdown to protect motors.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limitDeg": {
+            "type": "integer",
+            "enum": [
+              30,
+              60,
+              80
+            ],
+            "description": "Fall detection angle cutoff in degrees (30, 60, or 80)."
+          }
+        },
+        "required": [
+          "limitDeg"
+        ]
+      }
+    },
+    {
+      "name": "talos_set_mode",
+      "description": "Switch operational mode of the robot.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "balance-only",
+              "camera-assist"
+            ],
+            "description": "Operational mode."
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      }
+    },
+    {
+      "name": "talos_get_camera_feed",
+      "description": "Retrieve current ESP32-CAM video stream endpoint URL, relay status, and camera connection state.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}

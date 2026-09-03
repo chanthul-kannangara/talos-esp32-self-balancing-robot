@@ -1,13 +1,15 @@
-import { LogOut, Shield, ShieldAlert, Wifi } from "lucide-react";
+import { Bot, LogOut, Shield, ShieldAlert, Wifi } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header({
   armed,
   emergencyStopActive,
+  onOpenWebMcp,
   onSignOut,
   onThemeToggle,
   online,
   theme,
+  toolCount,
   user,
 }) {
   const safetyClass = emergencyStopActive
@@ -29,6 +31,18 @@ export default function Header({
       </div>
 
       <div className="topbar__actions">
+        <button
+          type="button"
+          className="webmcp-badge-btn"
+          onClick={onOpenWebMcp}
+          title="WebMCP 1.0 Agent Protocol: Tools available for autonomous AI agents"
+          aria-label="Open WebMCP Agent Console"
+        >
+          <Bot size={14} aria-hidden="true" strokeWidth={2} />
+          <span>WebMCP</span>
+          <span className="webmcp-tool-count">{toolCount || 11}</span>
+        </button>
+
         <div className={safetyClass}>
           {emergencyStopActive ? (
             <ShieldAlert size={14} aria-hidden="true" strokeWidth={2} />

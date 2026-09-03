@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ActivityLog from "./components/ActivityLog";
 import AttitudePanel from "./components/AttitudePanel";
 import CameraPanel from "./components/CameraPanel";
@@ -10,10 +11,12 @@ import SafetyControlPanel from "./components/SafetyControlPanel";
 import ServoControls from "./components/ServoControls";
 import SpeedSlider from "./components/SpeedSlider";
 import StatusGrid from "./components/StatusGrid";
+import WebMcpConsole from "./components/WebMcpConsole";
 import WifiSetupPanel from "./components/WifiSetupPanel";
 import { useAuthSession } from "./hooks/useAuthSession";
 import { useRobotDashboard } from "./hooks/useRobotDashboard";
 import { useThemePreference } from "./hooks/useThemePreference";
+import { useWebMCP } from "./hooks/useWebMCP";
 
 export default function App() {
   const { handleThemeToggle, theme } = useThemePreference();
@@ -49,6 +52,7 @@ export default function App() {
 }
 
 function DashboardApp({ authUser, handleSignOut, handleThemeToggle, theme }) {
+  const [isWebMcpOpen, setIsWebMcpOpen] = useState(false);
   const {
     activityEntries,
     balanceTuning,
@@ -78,6 +82,31 @@ function DashboardApp({ authUser, handleSignOut, handleThemeToggle, theme }) {
     status,
   } = useRobotDashboard();
 
+  const webmcp = useWebMCP({
+    status,
+    dashboardStatus,
+    currentCommand,
+    speed,
+    mode,
+    legPosition,
+    legSpeed,
+    legAssist,
+    balanceTuning,
+    fallAngleLimitDeg,
+    cameraUrl,
+    handleCommand,
+    handleSpeedChange,
+    handleArmedChange,
+    handleEmergencyStop,
+    handleStopDisarm,
+    handleHeightCommandApply,
+    handleLegAssistChange,
+    handleBalanceTuningApply,
+    handleFallAngleLimitChange,
+    handleModeChange,
+    handleCameraSave,
+  });
+
   return (
     <div className="app">
       <Header
@@ -88,6 +117,8 @@ function DashboardApp({ authUser, handleSignOut, handleThemeToggle, theme }) {
         online={status.online}
         user={authUser}
         onSignOut={handleSignOut}
+        onOpenWebMcp={() => setIsWebMcpOpen(true)}
+        toolCount={webmcp.tools.length}
       />
 
       <main className="dashboard-shell">
@@ -192,6 +223,14 @@ function DashboardApp({ authUser, handleSignOut, handleThemeToggle, theme }) {
           </aside>
         </div>
       </main>
+
+      <WebMcpConsole
+        isOpen={isWebMcpOpen}
+        onClose={() => setIsWebMcpOpen(false)}
+        tools={webmcp.tools}
+        executionLogs={webmcp.executionLogs}
+        executeTool={webmcp.executeTool}
+      />
     </div>
   );
 }
