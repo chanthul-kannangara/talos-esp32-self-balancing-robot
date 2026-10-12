@@ -2,7 +2,7 @@
 
 **An articulated two-wheel robot: ESP32 control, a CAD-based React dashboard, and offline MuJoCo experiments.**
 
-Built by **Chanthul Kannangara** · [Project portfolio](https://cklab.web.app/projects/talos) · [TALOS dashboard](https://talosone.web.app)
+Built by **Chanthul Kannangara** · [Project portfolio](https://chanthul.web.app/projects/talos) · [TALOS dashboard](https://talosone.web.app)
 
 TALOS combines two continuous-rotation wheel servos, two encoder-controlled leg drives, an MPU6050 and an ESP32. This repository contains the current V17 commissioning firmware, the dashboard's original 13-component CAD assembly, direct USB pose telemetry, and the October 2026 engineering and reinforcement-learning studies.
 
