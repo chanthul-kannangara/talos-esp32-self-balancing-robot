@@ -1,0 +1,110 @@
+{
+  "status": "Offline provisional model. Not calibrated, not a trained hardware policy.",
+  "total_mass_kg_example_not_measured": 2.0,
+  "leg_q_reference_rad": [
+    0.8726646259971648,
+    0.8214418353460664
+  ],
+  "body_com_above_driven_hip_m_assumed": 0.03,
+  "physics_dt_s": 0.002,
+  "servo_frame_dt_s": 0.02,
+  "wheel_radius_m": 0.0425,
+  "wheel_speed_limit_rad_s_assumed": 5.235987755982989,
+  "leg_speed_limit_rad_s_assumed": 7.5398223686155035,
+  "servo_lag_s_assumed": [
+    0.08,
+    0.08,
+    0.06,
+    0.06
+  ],
+  "servo_command_delay_frames_assumed": 1,
+  "deadband_fraction_assumed": 0.03,
+  "initial_root_height_m": 0.16362363437866353,
+  "initial_left_driven_hip_height_m": 0.16259235289359916,
+  "limitations": [
+    "Masses, inertia, CoM, friction, motor curve, lag and deadband are illustrative",
+    "Four-bar planar closure repaired from mismated native CAD",
+    "Joint axial offsets collapsed to a common plane; no modeled bolt clearance or backlash",
+    "M4 directly against PLA reported; clamp-dependent friction, stiction and wear are not identified or modeled",
+    "CAD meshes are visual only; primitive ground collisions, no robot self-collision",
+    "Tires are 85mm primitive cylinders, not an exported rim/tread CAD",
+    "No rail sag, BMS/current trip, thermal derating or contact sensor model",
+    "Only IMU and leg encoders in actor observations; wheel speed is not directly measured",
+    "M4/M3 nominal diameters and clip alignment are user supplied; lengths, heads, nuts and axial stack are schematic",
+    "Clip bores registered from native part coordinates, not the mismated original clip assembly transforms",
+    "All added hardware and servo cases are non-colliding zero-mass visuals; existing lumped dynamics are unchanged",
+    "Retaining clips stay aligned with their links; their two pins do not introduce independent mechanism joints",
+    "Wheel servo case is fixed to lower link; its output is coaxial with wheel joint; spline/adapter dimensions unmeasured",
+    "No bolt/PLA contact, preload, clearance, friction, wear, stress or fastener mass identified by this extension"
+  ],
+  "hardware_extension": {
+    "settings": {
+      "status": "Photo-informed visual hardware extension; not measured fastener dimensions or a contact-ready assembly",
+      "clips_stay_aligned_with_links_user_confirmed": true,
+      "nominal_shaft_diameter_m": {
+        "M4": 0.004,
+        "M3": 0.003
+      },
+      "schematic_head_dimensions_m": {
+        "M4": {
+          "hex_across_flats": 0.007,
+          "hex_height": 0.0028,
+          "socket_diameter": 0.007,
+          "socket_height": 0.004,
+          "nut_height": 0.0032
+        },
+        "M3": {
+          "hex_across_flats": 0.0055,
+          "hex_height": 0.002,
+          "socket_diameter": 0.0055,
+          "socket_height": 0.003,
+          "nut_height": 0.0024
+        }
+      },
+      "under_head_length_m_assumed": {
+        "support_hip": 0.028,
+        "knee": 0.028,
+        "follower": 0.034,
+        "upper_retainer": 0.028,
+        "support_retainer": 0.028
+      },
+      "outboard_head_face_m_assumed": {
+        "support_hip": 0.0162,
+        "knee": 0.0172,
+        "follower": 0.0232,
+        "upper_retainer": 0.0172,
+        "support_retainer": 0.0232
+      },
+      "clip_outer_face_m_assumed": {
+        "upper": 0.017,
+        "support": 0.023
+      },
+      "nut_count_per_pin_schematic": 1,
+      "fastener_mass_added_kg": 0,
+      "fastener_contact_enabled": false,
+      "wheel_servo": {
+        "case_envelope_m_supplier": [
+          0.0205,
+          0.0395,
+          0.042
+        ],
+        "case_offset_from_wheel_axis_m_assumed": [
+          0,
+          -0.02175,
+          0.01
+        ],
+        "shaft_diameter_m_assumed": 0.006,
+        "source_url": "https://tronic.lk/product/servo-motor-metal-wheel-360c-15kg-sm-s4315r",
+        "limitations": "Supplier envelope axes assigned from photos; output eccentricity, spline, adapter, axial gap and mount fit not measured. Housing stays on lower link; output and wheel rotate together. No extra mass added to existing illustrative lumped masses."
+      }
+    },
+    "mapping_file": "hardware_mapping.json",
+    "counts_annotated_pins_only": {
+      "M4": 8,
+      "M3": 2
+    },
+    "additional_actuators": 0,
+    "additional_joint_degrees_of_freedom": 0,
+    "clip_ownership_corrected": true
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extracted_package_calculations": "passed",
+  "extracted_package_model_generation": "passed",
+  "extracted_package_environment_check": "passed",
+  "bundled_glb_fallback": "passed with original path deliberately unavailable",
+  "fea_recomputed_in_portable_test": false,
+  "trained_policy": false,
+  "hardware_test": false
+}

@@ -1,0 +1,9 @@
+{
+  "reloaded_policy_same_seed_reproducibility": true,
+  "finite_rollout_and_actions": true,
+  "survival_is_not_required_for_this_serialization_check": true,
+  "duration_s": 1.1800000000000008,
+  "policy_sha256": "aa35abb2150643e05d7f7508c1ef31d3b9916ed1a7a77f8f3d6b2bc09be1c816",
+  "normalization_sha256": "73d253b261e86f40682da074d12568a21cc29858b7b51d814c788f52d42b5708",
+  "hardware_validated": false
+}

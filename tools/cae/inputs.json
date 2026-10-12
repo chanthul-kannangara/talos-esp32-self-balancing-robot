@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-11",
+  "total_mass_kg": null,
+  "illustrative_mass_kg": 2.0,
+  "mass_sweep_kg": [
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    4.0
+  ],
+  "print": {
+    "material": "PLA",
+    "infill": 0.5,
+    "layer_height_mm": 0.16,
+    "walls": null,
+    "density_scenario_kg_m3": 1240,
+    "effective_modulus_scenarios_gpa": [
+      0.8,
+      1.5,
+      2.6
+    ],
+    "poisson_scenario": 0.35
+  },
+  "servo_voltage_v": 6.0,
+  "wheel_diameter_m": 0.085,
+  "wheel_width_m": 0.03,
+  "wheel_rpm_baseline": 50.0,
+  "wheel_rpm_alternate": 56.0,
+  "wheel_torque_reference_kgf_cm": 12.2,
+  "leg_torque_reference_5v_kgf_cm": 21.0,
+  "leg_torque_reference_6_8v_kgf_cm": 25.0,
+  "leg_stall_current_reference_6_8v_a": [
+    2.6,
+    3.4
+  ],
+  "leg_buck_continuous_a": 2.0,
+  "leg_buck_peak_a": 3.0,
+  "converter_efficiency_scenario": 0.85,
+  "battery_voltage_range_v": [
+    10.8,
+    12.6
+  ],
+  "battery_capacity_ah": 3.0,
+  "battery_nominal_voltage_assumption_v": 11.1,
+  "wheel_current_peak_scenario_a": 2.0,
+  "logic_power_scenario_w": 2.5,
+  "camera_connected": false,
+  "joints": {
+    "reported_common_bolt": "M4 socket head",
+    "all_pivots_confirmed_m4": false,
+    "rotation_interface": "directly against PLA",
+    "bolt_grade": null,
+    "thread_in_bearing_plane": null,
+    "engagement_thickness_mm": null,
+    "clamp_preload_n": null
+  },
+  "user_observed_firmware_behavior": "Earlier firmware: stand holds leg posture without support; a separate command enables balance but balancing still fails; commanded height changes do not work. Exact earlier source version not identified.",
+  "reported_ground_to_pivot_m": [
+    0.162,
+    0.292
+  ],
+  "com_above_hip_scenarios_m": [
+    0.0,
+    0.03,
+    0.06
+  ],
+  "body_inertia_ratio_scenarios": [
+    0.0,
+    0.25,
+    0.5
+  ],
+  "native_cad_path": "cad/PARTS/Assem1.SLDASM",
+  "cad_glb_path": "public/models/talos-assembly.glb"
+}

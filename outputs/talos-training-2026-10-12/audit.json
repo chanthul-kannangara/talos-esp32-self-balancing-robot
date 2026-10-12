@@ -1,0 +1,21 @@
+{
+  "preserved_source_artifacts_unchanged": true,
+  "source_file_count": 68,
+  "original_cad_and_archived_assessment_unchanged_counts": {
+    "archived_assessment": 67,
+    "original_cad": 32
+  },
+  "firmware_path_reviewed_not_modified": "C:\\Users\\cooln\\Documents\\ESP32 Self Balancing Robot\\firmware\\TALOS_V17_Stable_Control\\src\\main.cpp",
+  "firmware_sha256": "1c182653e5a125b783580b9d4c382c43907de27ec038feb1ea1770ba7c8d5980",
+  "nominal_wheel_speed_limit_m_s_assumed": 0.22252947962927705,
+  "encoder_resolution_deg_nominal": 0.087890625,
+  "geometric_trim_span_deg_assumed_com": [
+    -3.0063427368615616,
+    -1.7549606955324661
+  ],
+  "max_linear_angle_height_error_mm_over_150_210mm": 2.3005883692634175,
+  "height_range_is_provisional_not_approved_hardware_travel": true,
+  "torques_are_static_screens_not_continuous_motor_ratings": true,
+  "encoder_resolution_is_not_physical_accuracy": true,
+  "hardware_validated": false
+}

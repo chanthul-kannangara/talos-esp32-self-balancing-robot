@@ -1,0 +1,71 @@
+{
+  "pdf": "C:\\Users\\cooln\\Documents\\ESP32 Self Balancing Robot\\output\\pdf\\TALOS_CAE_Assessment.pdf",
+  "page_count": 15,
+  "section_start_pages": [
+    {
+      "title": "01 / What the engineering says",
+      "page": 1
+    },
+    {
+      "title": "02 / As built: evidence and unknowns",
+      "page": 2
+    },
+    {
+      "title": "03 / CAD geometry and real height",
+      "page": 3
+    },
+    {
+      "title": "04 / Leg load and lifting margin",
+      "page": 4
+    },
+    {
+      "title": "05 / Power: test before tuning harder",
+      "page": 5
+    },
+    {
+      "title": "06 / Height-aware balance physics",
+      "page": 6
+    },
+    {
+      "title": "07 / M4 pivots directly against PLA",
+      "page": 7
+    },
+    {
+      "title": "08 / Solved native-link solid FEA",
+      "page": 8
+    },
+    {
+      "title": "09 / Sensors and why wheels stop",
+      "page": 9
+    },
+    {
+      "title": "10 / Controller and commissioning plan",
+      "page": 10
+    },
+    {
+      "title": "11 / Executable simulation: actual results",
+      "page": 11
+    },
+    {
+      "title": "12 / Training, obstacles and self-righting",
+      "page": 12
+    },
+    {
+      "title": "13 / What to borrow from the videos",
+      "page": 13
+    },
+    {
+      "title": "14 / Reproduce and close the gaps",
+      "page": 14
+    },
+    {
+      "title": "15 / Sources and evidence boundaries",
+      "page": 15
+    }
+  ],
+  "body_font_pt": 11,
+  "figures": 11,
+  "trained_policy": false,
+  "hardware_validated": false,
+  "raster_visual_qa": "All 15 pages visually inspected; chart label repaired and final affected page re-inspected"
+}

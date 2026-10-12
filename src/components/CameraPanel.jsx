@@ -52,7 +52,7 @@ function getCameraHomeUrl(streamUrl) {
   }
 }
 
-export default function CameraPanel({ cameraUrl, onCameraUrlChange, onSave }) {
+export default function CameraPanel({ cameraUrl, onCameraUrlChange, onSave, compact = false }) {
   const normalizedCameraUrl = normalizeCameraStreamUrl(cameraUrl);
   const hasCameraUrl = Boolean(normalizedCameraUrl);
   const isWebSocketStream = /^wss?:\/\//i.test(normalizedCameraUrl);
@@ -218,22 +218,7 @@ export default function CameraPanel({ cameraUrl, onCameraUrlChange, onSave }) {
     reconnecting: "Reconnecting",
   }[streamState];
 
-  return (
-    <section className="panel camera-panel" aria-labelledby="camera-heading">
-      <div className="panel-title-row">
-        <div>
-          <span className="section-kicker">Vision</span>
-          <h2 id="camera-heading">Camera</h2>
-          <p className="panel-sub">
-            {hasCameraUrl ? "OV3660 live preview" : "Camera not configured"}
-          </p>
-        </div>
-        <span className={`camera-stream-state camera-stream-state--${streamState}`}>
-          <span aria-hidden="true" />
-          {statusLabel}
-        </span>
-      </div>
-
+  const streamForm = (
       <form className="camera-form" onSubmit={onSave}>
         <div className="camera-form__row">
           <label htmlFor="camera-url">Stream address</label>
@@ -271,6 +256,30 @@ export default function CameraPanel({ cameraUrl, onCameraUrlChange, onSave }) {
           </a>
         </div>
       </form>
+  );
+
+  return (
+    <section className={compact ? "panel camera-panel camera-panel--compact" : "panel camera-panel"} aria-labelledby="camera-heading">
+      <div className="panel-title-row">
+        <div>
+          <span className="section-kicker">Vision</span>
+          <h2 id="camera-heading">Camera</h2>
+          <p className="panel-sub">
+            {hasCameraUrl ? "OV3660 live preview" : "Camera not configured"}
+          </p>
+        </div>
+        <span className={`camera-stream-state camera-stream-state--${streamState}`}>
+          <span aria-hidden="true" />
+          {statusLabel}
+        </span>
+      </div>
+
+      {compact ? (
+        <details className="camera-stream-settings">
+          <summary>Stream settings & reconnect</summary>
+          {streamForm}
+        </details>
+      ) : streamForm}
 
       <div className="camera-preview">
         {canRenderStream ? (
@@ -296,6 +305,7 @@ export default function CameraPanel({ cameraUrl, onCameraUrlChange, onSave }) {
               }}
             />
             <div
+              aria-hidden={previewReady}
               className={
                 previewReady
                   ? "camera-preview__placeholder is-hidden"

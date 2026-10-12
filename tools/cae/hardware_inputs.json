@@ -1,0 +1,22 @@
+{
+  "status": "Photo-informed visual hardware extension; not measured fastener dimensions or a contact-ready assembly",
+  "clips_stay_aligned_with_links_user_confirmed": true,
+  "nominal_shaft_diameter_m": {"M4": 0.004, "M3": 0.003},
+  "schematic_head_dimensions_m": {
+    "M4": {"hex_across_flats": 0.007, "hex_height": 0.0028, "socket_diameter": 0.007, "socket_height": 0.004, "nut_height": 0.0032},
+    "M3": {"hex_across_flats": 0.0055, "hex_height": 0.002, "socket_diameter": 0.0055, "socket_height": 0.003, "nut_height": 0.0024}
+  },
+  "under_head_length_m_assumed": {"support_hip": 0.028, "knee": 0.028, "follower": 0.034, "upper_retainer": 0.028, "support_retainer": 0.028},
+  "outboard_head_face_m_assumed": {"support_hip": 0.0162, "knee": 0.0172, "follower": 0.0232, "upper_retainer": 0.0172, "support_retainer": 0.0232},
+  "clip_outer_face_m_assumed": {"upper": 0.017, "support": 0.023},
+  "nut_count_per_pin_schematic": 1,
+  "fastener_mass_added_kg": 0,
+  "fastener_contact_enabled": false,
+  "wheel_servo": {
+    "case_envelope_m_supplier": [0.0205, 0.0395, 0.042],
+    "case_offset_from_wheel_axis_m_assumed": [0, -0.02175, 0.01],
+    "shaft_diameter_m_assumed": 0.006,
+    "source_url": "https://tronic.lk/product/servo-motor-metal-wheel-360c-15kg-sm-s4315r",
+    "limitations": "Supplier envelope axes assigned from photos; output eccentricity, spline, adapter, axial gap and mount fit not measured. Housing stays on lower link; output and wheel rotate together. No extra mass added to existing illustrative lumped masses."
+  }
+}

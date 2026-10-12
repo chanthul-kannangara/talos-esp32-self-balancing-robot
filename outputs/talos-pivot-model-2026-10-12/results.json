@@ -1,0 +1,150 @@
+{
+  "status": "CAD-informed preliminary CAE; not a measured or validated digital twin",
+  "example_mass_kg_not_measured": 2.0,
+  "cad": {
+    "left": {
+      "drive_world_m": [
+        0.6769747837013472,
+        0.8702884595783573,
+        1.1837776807976501
+      ],
+      "support_world_m": [
+        0.714406837668096,
+        0.9045295441602559,
+        1.1895533784762509
+      ],
+      "support_offset_m": [
+        0.03743205396674876,
+        0.03424108458189856
+      ],
+      "drive_length_m": 0.1,
+      "coupler_length_m": 0.02481,
+      "support_length_m": 0.1035135122941325,
+      "wheel_from_follower_m": 0.12408,
+      "wheel_from_drive_knee_m": 0.09927,
+      "drive_knee_mismatch_mm": 6.813447253610027,
+      "support_knee_mismatch_mm": 2.314629626605643,
+      "reference_angle_deg": 42.886862942151154,
+      "reference_hip_height_mm": 168.63688694246306,
+      "upper_name": "TALOS_Left_Leg_Link-1",
+      "lower_name": "Left Wheel Leg-1",
+      "support_name": "Left Leg Support-1",
+      "reconstructed_max_hip_height_mm": 235.30103504645416,
+      "max_height_drive_angle_deg": 20.00037875918515,
+      "max_height_search_window_deg": [
+        20.0,
+        35
+      ],
+      "head_top_above_drive_mm": 57.754860126706056
+    },
+    "right": {
+      "drive_world_m": [
+        0.6727785595608465,
+        0.8723510225484862,
+        1.37777768079765
+      ],
+      "support_world_m": [
+        0.7140818966564091,
+        0.906821251743541,
+        1.3770181586090715
+      ],
+      "support_offset_m": [
+        0.04130333709556255,
+        0.034470229195054825
+      ],
+      "drive_length_m": 0.1,
+      "coupler_length_m": 0.02481,
+      "support_length_m": 0.1035135122941325,
+      "wheel_from_follower_m": 0.12408,
+      "wheel_from_drive_knee_m": 0.09927,
+      "drive_knee_mismatch_mm": 5.09537305497106,
+      "support_knee_mismatch_mm": 0.0,
+      "reference_angle_deg": 32.43991931378933,
+      "reference_hip_height_mm": 201.4613291997143,
+      "upper_name": "TALOS_Right_Leg_Link-1",
+      "lower_name": "Right Wheel Leg -2",
+      "support_name": "Right Leg Support-1",
+      "reconstructed_max_hip_height_mm": 234.99043976630082,
+      "max_height_drive_angle_deg": 20.50036613387898,
+      "max_height_search_window_deg": [
+        20.5,
+        35
+      ],
+      "head_top_above_drive_mm": 55.6922971565772
+    },
+    "head_bbox_world_m": [
+      [
+        0.6189746806237065,
+        0.8280433197050633,
+        1.19077768079765
+      ],
+      [
+        0.7189747837013479,
+        0.9280433197050634,
+        1.3707776807976504
+      ]
+    ]
+  },
+  "structural_component_count": 13,
+  "native_mate_count": 5,
+  "solid_cad_volume_cm3": 536.5648391014145,
+  "printed_mass_screen_kg": [
+    0.33267020024287697,
+    0.6653404004857539
+  ],
+  "wheel_speed_baseline_m_s": 0.22252947962927705,
+  "wheel_torque_reference_nm_not_continuous": 1.1964112999999998,
+  "leg_torque_6v_interpolated_nm_not_continuous": 2.2773220555555556,
+  "leg_stall_current_6v_extrapolated_a_not_measured": [
+    2.294117647058824,
+    3.0
+  ],
+  "power_scenarios": [
+    {
+      "scenario": "6V low stall extrapolation",
+      "per_leg_current_a": 2.294117647058824,
+      "total_output_power_w": 54.02941176470589,
+      "battery_current_at_10_8v_a": 5.885556837113931,
+      "battery_current_at_12_6v_a": 5.044763003240513
+    },
+    {
+      "scenario": "6V high stall extrapolation",
+      "per_leg_current_a": 3.0,
+      "total_output_power_w": 62.5,
+      "battery_current_at_10_8v_a": 6.808278867102397,
+      "battery_current_at_12_6v_a": 5.835667600373483
+    },
+    {
+      "scenario": "6.8V published high used as conservative reserve",
+      "per_leg_current_a": 3.4,
+      "total_output_power_w": 67.30000000000001,
+      "battery_current_at_10_8v_a": 7.331154684095862,
+      "battery_current_at_12_6v_a": 6.283846872082168
+    }
+  ],
+  "q50_example": {
+    "side": "left",
+    "drive_angle_from_down_deg": 50.0,
+    "ground_to_driven_hip_mm": 162.59235289359916,
+    "wheel_x_relative_hip_mm": -5.4892573736498305,
+    "height_jacobian_m_per_rad": -0.16106199603183047,
+    "torque_nm_at_example_mass": 1.5794786233855502,
+    "upper_pin_load_n_at_example_mass": 40.85940692109805,
+    "support_pin_load_n_at_example_mass": 32.45415846488858,
+    "closure_error_m": 0.0
+  },
+  "fea_upper_force_local_n": [
+    15.79478623467297,
+    37.68309782574756,
+    0.0
+  ],
+  "q50_static_mass_at_interpolated_stall_kg_not_safe_rating": 2.8836377040345194,
+  "q50_static_mass_at_40percent_stall_scenario_kg": 1.1534550816138078,
+  "cad_reach_bound_driven_pivot_m": 0.24177,
+  "cad_reach_bound_alternate_lower_hole_m": 0.26658,
+  "source_glb_sha256": "85c22607cd7cdc72595c681ad6da59f505d9dc14327e14785bd5cb3852549636",
+  "validation": {
+    "fourbar_closure_max_m": 2.7755575615628914e-17,
+    "virtual_work_vs_pin_equilibrium": "passed all sampled configurations"
+  }
+}

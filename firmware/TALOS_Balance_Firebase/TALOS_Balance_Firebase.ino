@@ -74,8 +74,8 @@ constexpr uint8_t PIN_LEG_RIGHT = 33;
 // before using the robot outside a private demonstration network.
 // ============================================================================
 constexpr bool WIFI_FIREBASE_ENABLED = true;
-const char *WIFI_SSID = "PUT_2.4_GHZ_WIFI_NAME_HERE";
-const char *WIFI_PASSWORD = "PUT_WIFI_PASSWORD_HERE";
+const char *WIFI_SSID = "YOUR_WIFI_SSID";
+const char *WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 const char *FIREBASE_DATABASE_URL =
   "https://esp32-self-balancing-robot-default-rtdb.asia-southeast1.firebasedatabase.app";
 

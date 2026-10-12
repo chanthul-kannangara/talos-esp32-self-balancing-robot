@@ -7,11 +7,20 @@
 
 #include "board_config.h"
 
-// Connect the viewing device to this AP for the lowest-latency camera path.
-const char *directApSsid = "TALOS-CAMERA-DIRECT";
-const char *directApPassword = "talos-view";
-const char *fallbackRouterSsid = "S21 Ultra";
-const char *fallbackRouterPassword = "12345678";
+// Copy network_config.example.h to network_config.h before deployment.
+// The optional local header is ignored by Git.
+#if __has_include("network_config.h")
+#include "network_config.h"
+#else
+#define TALOS_CAMERA_AP_SSID "TALOS-CAM-SETUP"
+#define TALOS_CAMERA_AP_PASSWORD "configure-me-first"
+#define TALOS_CAMERA_ROUTER_SSID ""
+#define TALOS_CAMERA_ROUTER_PASSWORD ""
+#endif
+const char *directApSsid = TALOS_CAMERA_AP_SSID;
+const char *directApPassword = TALOS_CAMERA_AP_PASSWORD;
+const char *fallbackRouterSsid = TALOS_CAMERA_ROUTER_SSID;
+const char *fallbackRouterPassword = TALOS_CAMERA_ROUTER_PASSWORD;
 
 IPAddress directApIp(192, 168, 4, 1);
 IPAddress directApMask(255, 255, 255, 0);

@@ -21,6 +21,7 @@ const ALLOWED_WIFI_ACTIONS = new Set([
 const ALLOWED_POSTURE_ACTIONS = new Set([
   "capture-bent",
   "capture-extended",
+  "bench-hold",
 ]);
 
 function createRequestId(prefix) {
@@ -105,7 +106,7 @@ export function normalizeCameraStreamUrl(value) {
   }
 }
 
-function createRobotState(firebaseValue = {}) {
+export function createRobotState(firebaseValue = {}) {
   const firebaseControl = firebaseValue.control || {};
   const firebaseStatus = firebaseValue.status || {};
   const requestedTuning = {
@@ -155,6 +156,8 @@ function createRobotState(firebaseValue = {}) {
     status: {
       ...defaultRobotState.status,
       ...firebaseStatus,
+      jointSupported: firebaseStatus.jointControlSupported === true,
+      benchMode: firebaseStatus.benchModeActive === true,
       fallAngleLimitDeg: effectiveFallLimit,
       settingsReported: tuningReported,
       tuning: {
@@ -211,6 +214,24 @@ export async function updateLegHeight(legPosition, legSpeed) {
 export async function updateLegAssist(legAssist) {
   return update(ref(database, CONTROL_PATH), {
     legAssist: Boolean(legAssist),
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function updateJointAngles(leftBendDeg, rightBendDeg, speedDps) {
+  const targets = {
+    leftBendDeg: finiteNumber(leftBendDeg, "Left bend angle"),
+    rightBendDeg: finiteNumber(rightBendDeg, "Right bend angle"),
+    speedDps: finiteNumber(speedDps, "Joint speed"),
+  };
+  if (targets.leftBendDeg < 0 || targets.leftBendDeg > 160 ||
+      targets.rightBendDeg < 0 || targets.rightBendDeg > 160 ||
+      targets.speedDps < 1 || targets.speedDps > 15) {
+    throw new RangeError("Bend must be within 0–160° and speed within 1–15°/s. The ESP32 also enforces its calibrated limits.");
+  }
+  return update(ref(database, CONTROL_PATH), {
+    jointTargets: targets,
+    jointCommandRevision: Date.now(),
     updatedAt: serverTimestamp(),
   });
 }

@@ -1,0 +1,51 @@
+{
+  "environment_checker": "passed",
+  "observations": 21,
+  "actions": 4,
+  "model_xml_sha256": "9606a1ea1bed8ffe3ee64cfde291cb6a0c5e6075a30101763e5336094839bb80",
+  "model_assumptions_sha256": "95350503ae811822fa5f641f12fba227ac9fef9cf99cc4ae735465fc5bd5dd47",
+  "physics_hz": 500,
+  "servo_frames_hz": 50,
+  "baseline_episodes": [
+    {
+      "seed": 0,
+      "duration_s": 0.6000000000000004,
+      "fell": true,
+      "max_closure_m": 5.929236764393439e-05,
+      "end_pitch_deg": 37.682767828721346
+    },
+    {
+      "seed": 1,
+      "duration_s": 0.6000000000000004,
+      "fell": true,
+      "max_closure_m": 5.759321967063998e-05,
+      "end_pitch_deg": 36.15441478875091
+    },
+    {
+      "seed": 2,
+      "duration_s": 0.6200000000000004,
+      "fell": true,
+      "max_closure_m": 5.526957226498405e-05,
+      "end_pitch_deg": 37.00670966819374
+    },
+    {
+      "seed": 3,
+      "duration_s": 0.6400000000000005,
+      "fell": true,
+      "max_closure_m": 5.4850283618553696e-05,
+      "end_pitch_deg": 38.723877435267624
+    },
+    {
+      "seed": 4,
+      "duration_s": 0.5800000000000004,
+      "fell": true,
+      "max_closure_m": 6.579333793139409e-05,
+      "end_pitch_deg": 37.29172540328254
+    }
+  ],
+  "randomized_rollout_smoke_tests": 3,
+  "trained_policy": false,
+  "height_command_and_target_slew_checks": "passed at 0.15, 0.18 and 0.21m",
+  "hardware_validated": false,
+  "note": "Baseline is a diagnostic heuristic, not a tuned or trained balancing controller"
+}

@@ -1,0 +1,32 @@
+{
+  "algorithm": "PPO",
+  "label": "ppo-posture-v2",
+  "requested_steps": 65536,
+  "total_steps_in_policy": 262144,
+  "seed": 41,
+  "wall_seconds": 184.62114360000032,
+  "height_curriculum": true,
+  "resume": "outputs\\talos-training-2026-10-12\\training\\ppo-fixed-continued",
+  "reward_variant": "dense_posture_v2_nonnegative_alive_reward",
+  "source_snapshot_sha256": {
+    "training_session.py": "3485655d806b0abaf7b62d2f58f57125844ac9f0de650b2f946c88b4566a90a6",
+    "talos_env.py": "2ba248355b42f0eb06907c10d4e421d5afdb9e8b85cd622cf69c8ca55a72d3eb",
+    "analyse.py": "6a634ff69cded660821eff5db1c9ff3ea3a0a2a54406a4344c079a0b95f20714",
+    "simulation.py": "826da92bf979ddc45d80abb443abdacfbda925ee666c122e8a6fafe1f0a83de2"
+  },
+  "observations": 21,
+  "actions": 4,
+  "physics_hz": 500,
+  "commands_hz": 50,
+  "model_sha256": "9606a1ea1bed8ffe3ee64cfde291cb6a0c5e6075a30101763e5336094839bb80",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "stable-baselines3": "2.9.0",
+    "mujoco": "3.15.0",
+    "gymnasium": "1.4.0",
+    "numpy": "2.3.5"
+  },
+  "actor_has_wheel_encoder_or_base_velocity": false,
+  "privileged_truth_used_for_reward_and_evaluation_only": true,
+  "hardware_validated": false
+}

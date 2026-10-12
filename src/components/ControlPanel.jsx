@@ -32,7 +32,7 @@ export default function ControlPanel({
             <span className="eyebrow-dot" />
             Movement
           </p>
-          <h2>Manual drive</h2>
+          <h2>Drive controls</h2>
         </div>
         <span className={`command-badge command-badge--${currentCommand}`}>
           {formatCommand(currentCommand)}

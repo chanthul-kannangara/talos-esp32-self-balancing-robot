@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="TALOS_CAD_M4_M3_pivots_provisional">
+  <compiler angle="radian" autolimits="true" inertiafromgeom="auto" />
+  <option timestep="0.002" gravity="0 0 -9.80665" integrator="implicitfast" iterations="80" tolerance="1e-9" />
+  <default>
+    <joint damping="0.003" armature="0.00005" />
+    <geom contype="1" conaffinity="2" friction="0.8 0.003 0.0001" solref="0.006 1" solimp="0.95 0.99 0.001" />
+  </default>
+  <visual>
+    <global offwidth="1200" offheight="800" />
+    <headlight ambient="0.5 0.5 0.5" diffuse="0.7 0.7 0.7" />
+  </visual>
+  <asset>
+    <texture name="sky" type="skybox" builtin="gradient" rgb1="0.87 0.93 0.92" rgb2="0.97 0.98 0.96" width="512" height="3072" />
+    <mesh name="body_0" file="assets/body_0.obj" />
+    <mesh name="body_1" file="assets/body_1.obj" />
+    <mesh name="body_2" file="assets/body_2.obj" />
+    <mesh name="left_upper_0" file="assets/left_upper_0.obj" />
+    <mesh name="left_lower_0" file="assets/left_lower_0.obj" />
+    <mesh name="left_support_0" file="assets/left_support_0.obj" />
+    <mesh name="right_upper_0" file="assets/right_upper_0.obj" />
+    <mesh name="right_lower_0" file="assets/right_lower_0.obj" />
+    <mesh name="right_support_0" file="assets/right_support_0.obj" />
+    <material name="steel" rgba="0.72 0.74 0.75 1" specular="0.8" shininess="0.5" />
+    <material name="gold" rgba="0.65 0.48 0.23 1" specular="0.7" shininess="0.5" />
+    <material name="printed_clip" rgba="0.07 0.1 0.1 1" specular="0.15" shininess="0.5" />
+    <material name="servo_black" rgba="0.035 0.04 0.04 1" specular="0.3" shininess="0.5" />
+    <material name="socket_dark" rgba="0.015 0.018 0.018 1" specular="0.05" shininess="0.5" />
+    <mesh name="left_upper_retaining_clip" file="assets/left_upper_retaining_clip.obj" />
+    <mesh name="left_support_retaining_clip" file="assets/left_support_retaining_clip.obj" />
+    <mesh name="left_support_hip_head" file="assets/left_support_hip_head.obj" />
+    <mesh name="left_support_hip_nut" file="assets/left_support_hip_nut.obj" />
+    <mesh name="left_knee_head" file="assets/left_knee_head.obj" />
+    <mesh name="left_knee_nut" file="assets/left_knee_nut.obj" />
+    <mesh name="left_follower_head" file="assets/left_follower_head.obj" />
+    <mesh name="left_follower_nut" file="assets/left_follower_nut.obj" />
+    <mesh name="left_upper_retainer_socket" file="assets/left_upper_retainer_socket.obj" />
+    <mesh name="left_upper_retainer_nut" file="assets/left_upper_retainer_nut.obj" />
+    <mesh name="left_support_retainer_socket" file="assets/left_support_retainer_socket.obj" />
+    <mesh name="left_support_retainer_nut" file="assets/left_support_retainer_nut.obj" />
+    <mesh name="right_upper_retaining_clip" file="assets/right_upper_retaining_clip.obj" />
+    <mesh name="right_support_retaining_clip" file="assets/right_support_retaining_clip.obj" />
+    <mesh name="right_support_hip_head" file="assets/right_support_hip_head.obj" />
+    <mesh name="right_support_hip_nut" file="assets/right_support_hip_nut.obj" />
+    <mesh name="right_knee_head" file="assets/right_knee_head.obj" />
+    <mesh name="right_knee_nut" file="assets/right_knee_nut.obj" />
+    <mesh name="right_follower_head" file="assets/right_follower_head.obj" />
+    <mesh name="right_follower_nut" file="assets/right_follower_nut.obj" />
+    <mesh name="right_upper_retainer_socket" file="assets/right_upper_retainer_socket.obj" />
+    <mesh name="right_upper_retainer_nut" file="assets/right_upper_retainer_nut.obj" />
+    <mesh name="right_support_retainer_socket" file="assets/right_support_retainer_socket.obj" />
+    <mesh name="right_support_retainer_nut" file="assets/right_support_retainer_nut.obj" />
+  </asset>
+  <worldbody>
+    <light pos="0 -2 3" dir="0 0 -1" directional="true" />
+    <geom name="floor" type="plane" size="3 3 0.1" rgba="0.91 0.92 0.9 1" contype="2" conaffinity="1" />
+    <body name="torso" pos="0 0 0.1636236344">
+      <freejoint name="base" />
+      <inertial mass="1.6099999999999999" pos="0 0 0.03" diaginertia="0.005688666667 0.002683333333 0.005688666667" />
+      <geom name="body_collision" type="box" pos="-0.005901939469 -2.220446049e-16 0.006723578642" size="0.05000005154 0.09 0.05" mass="0" group="3" rgba="0.1 0.2 0.2 0" />
+      <geom type="mesh" mesh="body_0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+      <geom type="mesh" mesh="body_1" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+      <geom type="mesh" mesh="body_2" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+      <site name="imu" pos="0 0 0.03" size="0.003" rgba="0.9 0.5 0.2 1" />
+      <body name="left_upper" pos="0.00209811207 0.097 -0.001031281485" euler="0 -0.872664626 0">
+        <joint name="left_hip" type="hinge" axis="0 -1 0" ref="0.8726646259971648" range="0.436332313 1.047197551" />
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1" size="0.006" mass="0.025" group="3" rgba="0.2 0.5 0.4 0" />
+        <geom type="mesh" mesh="left_upper_0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+        <body name="left_lower" pos="0 0 -0.1" euler="0 1.846368639 0">
+          <joint name="left_knee_passive" type="hinge" axis="0 -1 0" />
+          <geom type="capsule" fromto="0 0 0.02481 0 0 -0.09927" size="0.007" mass="0.095" group="3" rgba="0.3 0.3 0.3 0" />
+          <site name="left_lower_follower" pos="0 0 0.02481" size="0.001" />
+          <geom type="mesh" mesh="left_lower_0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+          <body name="left_wheel" pos="0 0.03 -0.09927">
+            <joint name="left_wheel_joint" type="hinge" axis="0 1 0" damping="0.001" />
+            <geom name="left_tire" type="cylinder" size="0.0425 0.015" euler="1.570796327 0 0" mass="0.06" rgba="0.07 0.08 0.08 1" />
+            <geom type="cylinder" size="0.02635 0.0152" euler="1.570796327 0 0" mass="0" contype="0" conaffinity="0" rgba="0.65 0.72 0.7 1" />
+            <geom mass="0" contype="0" conaffinity="0" group="2" name="left_wheel_output_shaft" type="cylinder" fromto="0 -0.04 0 0 0 0" size="0.003" material="gold" />
+            <site name="left_wheel_output_axis" pos="0 0 0" size="0.001" group="4" />
+          </body>
+          <geom mass="0" contype="0" conaffinity="0" group="2" name="left_wheel_servo_case" type="box" pos="0 -0.02175 -0.08927" size="0.01025 0.01975 0.021" material="servo_black" />
+          <site name="left_wheel_mount_axis" pos="0 0 -0.09927" size="0.001" group="4" />
+        </body>
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_upper_retaining_clip" type="mesh" mesh="left_upper_retaining_clip" material="printed_clip" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_knee_shaft" type="cylinder" fromto="0 0.0172 -0.1 0 -0.0108 -0.1" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_knee_head" type="mesh" mesh="left_knee_head" material="gold" pos="0 0.0186 -0.1" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_knee_nut" type="mesh" mesh="left_knee_nut" material="gold" pos="0 -0.008 -0.1" />
+        <site name="left_knee_axis" pos="0 0 -0.1" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_upper_retainer_shaft" type="cylinder" fromto="0 0.0172 -0.048667652 0 -0.0108 -0.048667652" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_upper_retainer_head" type="cylinder" pos="0 0.0192 -0.048667652" zaxis="0 1 0" size="0.0035 0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_upper_retainer_socket" type="mesh" mesh="left_upper_retainer_socket" material="socket_dark" pos="0 0.02122 -0.048667652" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_upper_retainer_nut" type="mesh" mesh="left_upper_retainer_nut" material="gold" pos="0 -0.008 -0.048667652" />
+        <site name="left_upper_retainer_axis" pos="0 0 -0.048667652" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <site name="left_driven_hip_axis" pos="0 0 0" size="0.001" group="4" />
+      </body>
+      <body name="left_support" pos="0.03953016604 0.097 0.0332098031" euler="0 -0.6146051316 0">
+        <joint name="left_support_passive" type="hinge" axis="0 -1 0" />
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1035135123" size="0.004" mass="0.015" group="3" rgba="0.3 0.3 0.3 0" />
+        <site name="left_support_tip" pos="0 0 -0.1035135123" size="0.001" />
+        <geom type="mesh" mesh="left_support_0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_retaining_clip" type="mesh" mesh="left_support_retaining_clip" material="printed_clip" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_hip_shaft" type="cylinder" fromto="0 0.0162 0 0 -0.0118 0" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_hip_head" type="mesh" mesh="left_support_hip_head" material="gold" pos="0 0.0176 0" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_hip_nut" type="mesh" mesh="left_support_hip_nut" material="gold" pos="0 -0.009 0" />
+        <site name="left_support_hip_axis" pos="0 0 0" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_follower_shaft" type="cylinder" fromto="0 0.0232 -0.1035135123 0 -0.0108 -0.1035135123" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_follower_head" type="mesh" mesh="left_follower_head" material="gold" pos="0 0.0246 -0.1035135123" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_follower_nut" type="mesh" mesh="left_follower_nut" material="gold" pos="0 -0.008 -0.1035135123" />
+        <site name="left_follower_axis" pos="0 0 -0.1035135123" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_retainer_shaft" type="cylinder" fromto="0 0.0232 -0.08572 0 -0.0048 -0.08572" size="0.0015" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_retainer_head" type="cylinder" pos="0 0.0247 -0.08572" zaxis="0 1 0" size="0.00275 0.0015" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_retainer_socket" type="mesh" mesh="left_support_retainer_socket" material="socket_dark" pos="0 0.02622 -0.08572" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="left_support_retainer_nut" type="mesh" mesh="left_support_retainer_nut" material="gold" pos="0 -0.0024 -0.08572" />
+        <site name="left_support_retainer_axis" pos="0 0 -0.08572" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+      </body>
+      <body name="right_upper" pos="-0.00209811207 -0.097 0.001031281485" euler="0 -0.8214418353 0">
+        <joint name="right_hip" type="hinge" axis="0 -1 0" ref="0.8214418353460664" range="0.436332313 1.047197551" />
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1" size="0.006" mass="0.025" group="3" rgba="0.2 0.5 0.4 0" />
+        <geom type="mesh" mesh="right_upper_0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+        <body name="right_lower" pos="0 0 -0.1" euler="0 1.816616171 0">
+          <joint name="right_knee_passive" type="hinge" axis="0 -1 0" />
+          <geom type="capsule" fromto="0 0 0.02481 0 0 -0.09927" size="0.007" mass="0.095" group="3" rgba="0.3 0.3 0.3 0" />
+          <site name="right_lower_follower" pos="0 0 0.02481" size="0.001" />
+          <geom type="mesh" mesh="right_lower_0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+          <body name="right_wheel" pos="0 -0.03 -0.09927">
+            <joint name="right_wheel_joint" type="hinge" axis="0 1 0" damping="0.001" />
+            <geom name="right_tire" type="cylinder" size="0.0425 0.015" euler="1.570796327 0 0" mass="0.06" rgba="0.07 0.08 0.08 1" />
+            <geom type="cylinder" size="0.02635 0.0152" euler="1.570796327 0 0" mass="0" contype="0" conaffinity="0" rgba="0.65 0.72 0.7 1" />
+            <geom mass="0" contype="0" conaffinity="0" group="2" name="right_wheel_output_shaft" type="cylinder" fromto="0 0.04 0 0 0 0" size="0.003" material="gold" />
+            <site name="right_wheel_output_axis" pos="0 0 0" size="0.001" group="4" />
+          </body>
+          <geom mass="0" contype="0" conaffinity="0" group="2" name="right_wheel_servo_case" type="box" pos="0 0.02175 -0.08927" size="0.01025 0.01975 0.021" material="servo_black" />
+          <site name="right_wheel_mount_axis" pos="0 0 -0.09927" size="0.001" group="4" />
+        </body>
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_upper_retaining_clip" type="mesh" mesh="right_upper_retaining_clip" material="printed_clip" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_knee_shaft" type="cylinder" fromto="0 -0.0172 -0.1 0 0.0108 -0.1" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_knee_head" type="mesh" mesh="right_knee_head" material="gold" pos="0 -0.0186 -0.1" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_knee_nut" type="mesh" mesh="right_knee_nut" material="gold" pos="0 0.008 -0.1" />
+        <site name="right_knee_axis" pos="0 0 -0.1" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_upper_retainer_shaft" type="cylinder" fromto="0 -0.0172 -0.048667652 0 0.0108 -0.048667652" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_upper_retainer_head" type="cylinder" pos="0 -0.0192 -0.048667652" zaxis="0 1 0" size="0.0035 0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_upper_retainer_socket" type="mesh" mesh="right_upper_retainer_socket" material="socket_dark" pos="0 -0.02122 -0.048667652" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_upper_retainer_nut" type="mesh" mesh="right_upper_retainer_nut" material="gold" pos="0 0.008 -0.048667652" />
+        <site name="right_upper_retainer_axis" pos="0 0 -0.048667652" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <site name="right_driven_hip_axis" pos="0 0 0" size="0.001" group="4" />
+      </body>
+      <body name="right_support" pos="0.03920522503 -0.097 0.03550151068" euler="0 -0.5343944109 0">
+        <joint name="right_support_passive" type="hinge" axis="0 -1 0" />
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1035135123" size="0.004" mass="0.015" group="3" rgba="0.3 0.3 0.3 0" />
+        <site name="right_support_tip" pos="0 0 -0.1035135123" size="0.001" />
+        <geom type="mesh" mesh="right_support_0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.12 0.22 0.21 1" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_retaining_clip" type="mesh" mesh="right_support_retaining_clip" material="printed_clip" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_hip_shaft" type="cylinder" fromto="0 -0.0162 0 0 0.0118 0" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_hip_head" type="mesh" mesh="right_support_hip_head" material="gold" pos="0 -0.0176 0" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_hip_nut" type="mesh" mesh="right_support_hip_nut" material="gold" pos="0 0.009 0" />
+        <site name="right_support_hip_axis" pos="0 0 0" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_follower_shaft" type="cylinder" fromto="0 -0.0232 -0.1035135123 0 0.0108 -0.1035135123" size="0.002" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_follower_head" type="mesh" mesh="right_follower_head" material="gold" pos="0 -0.0246 -0.1035135123" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_follower_nut" type="mesh" mesh="right_follower_nut" material="gold" pos="0 0.008 -0.1035135123" />
+        <site name="right_follower_axis" pos="0 0 -0.1035135123" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_retainer_shaft" type="cylinder" fromto="0 -0.0232 -0.08572 0 0.0048 -0.08572" size="0.0015" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_retainer_head" type="cylinder" pos="0 -0.0247 -0.08572" zaxis="0 1 0" size="0.00275 0.0015" material="steel" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_retainer_socket" type="mesh" mesh="right_support_retainer_socket" material="socket_dark" pos="0 -0.02622 -0.08572" />
+        <geom mass="0" contype="0" conaffinity="0" group="2" name="right_support_retainer_nut" type="mesh" mesh="right_support_retainer_nut" material="gold" pos="0 0.0024 -0.08572" />
+        <site name="right_support_retainer_axis" pos="0 0 -0.08572" size="0.0006" rgba="0.9 0.6 0.1 1" group="4" />
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <connect name="left_fourbar" site1="left_lower_follower" site2="left_support_tip" solref="0.004 1" solimp="0.999 0.9999 0.00001" />
+    <connect name="right_fourbar" site1="right_lower_follower" site2="right_support_tip" solref="0.004 1" solimp="0.999 0.9999 0.00001" />
+  </equality>
+  <actuator>
+    <velocity name="left_leg_servo" joint="left_hip" kv="0.30203921846155213" ctrlrange="-7.539822369 7.539822369" forcerange="-2.277322056 2.277322056" />
+    <velocity name="right_leg_servo" joint="right_hip" kv="0.30203921846155213" ctrlrange="-7.539822369 7.539822369" forcerange="-2.277322056 2.277322056" />
+    <velocity name="left_wheel_servo" joint="left_wheel_joint" kv="0.22849772683920058" ctrlrange="-5.235987756 5.235987756" forcerange="-1.1964113 1.1964113" />
+    <velocity name="right_wheel_servo" joint="right_wheel_joint" kv="0.22849772683920058" ctrlrange="-5.235987756 5.235987756" forcerange="-1.1964113 1.1964113" />
+  </actuator>
+  <sensor>
+    <gyro name="imu_gyro" site="imu" />
+    <accelerometer name="imu_accel" site="imu" />
+    <jointpos name="left_encoder" joint="left_hip" />
+    <jointpos name="right_encoder" joint="right_hip" />
+  </sensor>
+</mujoco>

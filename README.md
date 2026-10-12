@@ -1,207 +1,110 @@
-# TALOS: Two-Wheeled Self-Balancing Robot with Active Articulation & WebMCP
+# TALOS
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![WebMCP: 1.0](https://img.shields.io/badge/WebMCP-1.0_Standard-10b981.svg)](https://talosone.web.app/webmcp.json)
-[![Platform: ESP32](https://img.shields.io/badge/Platform-ESP32-blue.svg)](https://www.espressif.com/)
-[![React: 18](https://img.shields.io/badge/Frontend-React_18-61dafb.svg)](https://react.dev/)
-[![Vite: 5](https://img.shields.io/badge/Bundler-Vite_5-646CFF.svg)](https://vitejs.dev/)
-[![Firebase: RTDB](https://img.shields.io/badge/Cloud-Firebase_RTDB-FFA611.svg)](https://firebase.google.com/)
+**An articulated two-wheel robot: ESP32 control, a CAD-based React dashboard, and offline MuJoCo experiments.**
 
-**TALOS** is an open-source, two-wheeled self-balancing robot featuring active dual-servo leg articulation, deterministic real-time balancing via ESP32 FreeRTOS, a responsive web teleoperation dashboard with low-latency live camera streaming, and native **WebMCP (Web Model Context Protocol)** support for autonomous AI agent control.
+Built by **Chanthul Kannangara** · [Project portfolio](https://cklab.web.app/projects/talos) · [TALOS dashboard](https://talosone.web.app)
 
-- **Live Dashboard**: [https://talosone.web.app/](https://talosone.web.app/)
-- **WebMCP Tool Manifest**: [https://talosone.web.app/webmcp.json](https://talosone.web.app/webmcp.json)
+TALOS combines two continuous-rotation wheel servos, two encoder-controlled leg drives, an MPU6050 and an ESP32. This repository contains the current V17 commissioning firmware, the dashboard's original 13-component CAD assembly, direct USB pose telemetry, and the October 2026 engineering and reinforcement-learning studies.
 
-Developed by **Chanthul Kannangara** at NSBM Green University (Mechatronics Engineering).
+**Status: commissioning and model identification are ongoing. Physical free balancing, calibrated height transitions, obstacle climbing and self-righting have not been validated.** The offline PPO candidate survived 22/24 ten-second simulation cases but passed **0/24** complete balance/posture accuracy tests. Its weights are retained for reproducibility and are not approved for the robot.
 
----
+![Photo-informed TALOS model with articulated legs and wheel-servo housings](outputs/talos-pivot-model-2026-10-12/figures/hardware_overview.png)
 
-## Key Features
+*CAD-derived simulation view. Fasteners and servo housings are schematic visuals; this is an uncalibrated rigid-body model.*
 
-- **Deterministic 200 Hz Balance Loop**: Runs on **Core 1** of the ESP32 using FreeRTOS tasks to guarantee hard real-time balance calculations without network jitter.
-- **Sensor Fusion & PID Stabilization**: Integrates an **MPU-6050** 6-axis IMU with a complementary filter for drift-free pitch estimation and high-frequency rate-damping PID control.
-- **Active Leg Articulation**: Dual **MG996R** high-torque servos adjust ride height, lean trim, and dynamic posture compensation for stability across transitions.
-- **Dual Continuous Servos**: SM-S4315R continuous-rotation servos deliver smooth differential drive balancing.
-- **Live Video Streaming**: Dedicated **ESP32-CAM** (OV2640) streaming MJPEG video with low latency directly into the control UI via Node.js relay bridges.
-- **Native WebMCP 1.0 Agent Support**: Full compliance with the **W3C Web Model Context Protocol** specification (`navigator.modelContext`), exposing 11 high-level structured tools for browser AI agents to query telemetry, command motion, tune PID, and articulate legs.
-- **Modern Web Teleoperation Dashboard**: Built with **React 18**, **Vite**, and **Tailwind CSS**, connecting via **Firebase Realtime Database** for live telemetry streaming, PID gain tuning, and virtual joystick control.
+## October 2026 update
 
----
+- **V17 firmware:** local MPU/wheel calculations target 500 Hz, leg feedback 100 Hz and servo PWM 50 Hz. Sensor health, stale-data checks, bounded leg tracking, explicit arming and a separate network task are implemented.
+- **CAD dashboard:** Control, Posture, Camera and Settings workspaces, independent leg articulation, live IMU attitude, lazy-loaded WebGL, reduced-motion support and a fallback for unavailable 3D rendering. The original 13 structural meshes remain intact.
+- **Direct USB feedback:** desktop Chrome/Edge Web Serial uses a leased 25 Hz, view-only pose stream. Rendering and linkage calculations run in the browser. Slider targets represent requested motion; the drawing uses encoder measurements. Actuator commands still use the existing control channel.
+- **Mechanical assessment:** native-CAD measurements, linkage/load/power calculations, preliminary solid FEA, M4/M3 pivot annotations and executable MuJoCo models at three provisional initial hip heights.
+- **Offline learning:** 393,216 PPO transitions across four stages/branches, saved policies and normalization, held-out traces, diagnostic plots and labelled simulation replays. Failed posture control remains visible in the results.
 
-## WebMCP (Web Model Context Protocol) Autonomous Agent Interface
+## Repository map
 
-TALOS natively implements the **W3C Web Machine Learning CG WebMCP standard** directly in the web dashboard at [talosone.web.app](https://talosone.web.app/).
+| Path | Contents |
+| --- | --- |
+| [`firmware/TALOS_V17_Stable_Control`](firmware/TALOS_V17_Stable_Control) | Current PlatformIO firmware and commissioning procedure |
+| [`src`](src) | React dashboard, Firebase integration, USB telemetry and CAD pose views |
+| [`public/models`](public/models) | Original assembly GLB and display-rig limitations |
+| [`tools/cae`](tools/cae) | Offline calculations, FEA, MuJoCo, Gymnasium and PPO scripts |
+| [`outputs/talos-cae-2026-10-11`](outputs/talos-cae-2026-10-11) | Dated assessment inputs, numerical results, STEP geometry and plots |
+| [`outputs/talos-pivot-model-2026-10-12`](outputs/talos-pivot-model-2026-10-12) | Photo-informed pivot/servo model and geometric checks |
+| [`outputs/talos-training-2026-10-12`](outputs/talos-training-2026-10-12) | Training study, final evaluations, weights and replay evidence |
+| [`docs/PUBLICATION.md`](docs/PUBLICATION.md) | Included artifacts, omitted private files and reproduction limits |
 
-Autonomous AI agents (e.g. Chrome Model Context Extensions, OpenAI Operator, autonomous browser agents) can inspect and call the robot tools directly via `navigator.modelContext`:
+`firmware/TALOS_Balance_Firebase` is an older positional-leg prototype with a different GPIO assignment. It is retained as history and must not be treated as the V17 wiring guide. The camera sketch is a separate optional device. Its local network configuration is excluded from Git.
 
-```javascript
-// Check available tools
-const tools = navigator.modelContext.getTools();
+## Dashboard setup
 
-// 1. Fetch live telemetry
-const telemetry = await navigator.modelContext.executeTool("talos_get_telemetry");
-console.log(`Current pitch: ${telemetry.orientation.pitchDeg}°, Battery: ${telemetry.battery.percentage}%`);
+Use Node.js and pnpm. From this repository root:
 
-// 2. Command motion
-await navigator.modelContext.executeTool("talos_motion_command", { direction: "forward" });
-
-// 3. Articulate leg posture (lower ride height to 25% for stability)
-await navigator.modelContext.executeTool("talos_set_leg_posture", { legPosition: 25, legSpeed: 80 });
-
-// 4. Live PID tuning
-await navigator.modelContext.executeTool("talos_tune_pid", { kp: 90, kd: 3.0 });
-
-// 5. Emergency Stop
-await navigator.modelContext.executeTool("talos_emergency_stop");
+```powershell
+pnpm install --frozen-lockfile
+Copy-Item .env.example .env.local
+# Fill in your own Firebase web-app configuration in .env.local.
+pnpm dev
 ```
 
-### Registered WebMCP Tools Catalog
+Enable Firebase Authentication and configure the Realtime Database for your own account and device. Read [`database.rules.json`](database.rules.json), [`src/services/firebaseClient.js`](src/services/firebaseClient.js) and the firmware's network configuration before deployment. The supplied `.firebaserc` names the original development project; replace it with your own project/hosting target. A Firebase web configuration alone does not grant control access.
 
-| Tool Name | Parameters | Description |
-|:---|:---|:---|
-| `talos_get_telemetry` | *(none)* | Returns real-time pitch, roll, armed state, speed, battery, fall limit, and leg extension. |
-| `talos_motion_command` | `direction`: `"stop" \| "forward" \| "backward" \| "left" \| "right"` | Commands directional drive while onboard FreeRTOS loop maintains balance. |
-| `talos_set_speed` | `speed`: `0 - 100` | Adjusts drive throttle and motion effort percentage. |
-| `talos_set_armed` | `armed`: `true \| false` | Arms or disarms the 200 Hz balancing control loop. |
-| `talos_emergency_stop` | *(none)* | Instant hardware safety interlock: disarms all motors and stops all motion. |
-| `talos_set_leg_posture` | `legPosition`: `0 - 100`, `legSpeed`: `0 - 100` | Articulates dual MG996R servos to adjust chassis ground clearance and ride height. |
-| `talos_toggle_leg_assist` | `enabled`: `true \| false` | Toggles dynamic leg posture balancing compensation for large tilt disturbances. |
-| `talos_tune_pid` | `kp`, `ki`, `kd`, `balanceTrimDeg`, `predictionTimeMs`, ... | Live-tunes PID parameters and wheel limits on ESP32 over Wi-Fi/Firebase. |
-| `talos_set_fall_limit` | `limitDeg`: `30 \| 60 \| 80` | Sets pitch angle cutoff threshold for motor protection shutdown. |
-| `talos_set_mode` | `mode`: `"manual" \| "balance-only" \| "camera-assist"` | Switches operational mode. |
-| `talos_get_camera_feed` | *(none)* | Returns live ESP32-CAM MJPEG video stream URL and status. |
-
----
-
-## System Architecture
-
-```text
-+-----------------------------------------------------------------------------------------+
-|                                    USER & AGENT LAYER                                   |
-|   Human User (React 18 Dashboard UI)  <======>  AI Agents (WebMCP: navigator.modelContext)|
-+--------------------------------------------+--------------------------------------------+
-                                             |
-                                  Firebase RTDB / WebSocket
-                                             |
-                       +---------------------+---------------------+
-                       |                                           |
-        +--------------v---------------+           +---------------v---------------+
-        |     ESP32 ROBOT CONTROLLER   |           |    ESP32-CAM STREAMER         |
-        |  [Core 0]: Wi-Fi & Firebase  |           |  - AI-Thinker OV2640 Module   |
-        |            Command Polling   |           |  - MJPEG Stream over HTTP     |
-        |  [Core 1]: 200 Hz FreeRTOS   |           +---------------+---------------+
-        |            Complementary +   |                           |
-        |            PID Balance Task  |                           v
-        +--------------+---------------+           +---------------+---------------+
-                       |                           |    LOCAL CAMERA RELAY         |
-          +------------+------------+              |  - Node.js (camera-relay.mjs) |
-          |                         |              |  - Port 4174 WebSocket Proxy  |
-          v                         v              +-------------------------------+
-        [MPU-6050 IMU]      [Servos / Actuators]
-        - I2C (GPIO 21/22)  - Left Wheel (GPIO 25)
-                            - Right Wheel (GPIO 26)
-                            - Left Leg (GPIO 27)
-                            - Right Leg (GPIO 33)
+```powershell
+pnpm build
+node tools/validate-cad-rig.mjs
 ```
 
----
+The development-only `/?preview-dashboard` route shows the workspace without a UI login. Database access rules still apply. `tools/pose-preview.html` supplies synthetic pose data for display checks and sends no robot commands. Web Serial requires a supported desktop browser and HTTPS or localhost; close other serial users first. Opening the ESP32 serial port may reset the device.
 
-## Hardware Pinout & Wiring
+## Firmware and wiring
 
-| Component | Pin / Signal | ESP32 GPIO | Description |
-|:---|:---|:---|:---|
-| **MPU-6050 IMU** | SDA | GPIO 21 | Primary I2C Data |
-| **MPU-6050 IMU** | SCL | GPIO 22 | Primary I2C Clock |
-| **MPU-6050 IMU** | VCC / GND | 3V3 / GND | Common 3.3V Logic Supply |
-| **Left Wheel Servo** | PWM Signal | GPIO 25 | SM-S4315R Continuous Rotation |
-| **Right Wheel Servo** | PWM Signal | GPIO 26 | SM-S4315R Continuous Rotation |
-| **Left Leg Servo** | PWM Signal | GPIO 27 | MG996R High-Torque Positional |
-| **Right Leg Servo** | PWM Signal | GPIO 33 | MG996R High-Torque Positional |
-| **ESP32-CAM** | Camera Stream | Wi-Fi / IP | AI-Thinker OV2640 Streamer |
+Use [`firmware/TALOS_V17_Stable_Control/README.md`](firmware/TALOS_V17_Stable_Control/README.md) for the current procedure. A compile-only check, from that folder:
 
-> **Power Notice**: Continuous and high-torque servos draw peak currents up to 2.5A. Never power servos directly from the ESP32 board. Always use dedicated external buck converters (e.g., LM2596) with a common ground (`GND_COMMON`).
-
----
-
-## Repository Structure
-
-```text
-talos-esp32-self-balancing-robot/
-├── LICENSE                                # MIT Open Source License (visible in About)
-├── README.md                              # Main documentation & WebMCP specification
-├── package.json                           # React dashboard dependencies & scripts
-├── vite.config.js                         # Vite build configuration
-├── index.html                             # Web dashboard entry point with WebMCP tags
-├── firebase.json                          # Firebase Hosting & RTDB rules configuration
-├── database.rules.json                    # RTDB security rules
-├── .env.example                           # Example environment configuration
-├── public/                                # Public Static Assets
-│   └── webmcp.json                        # W3C WebMCP tool manifest for AI agent crawlers
-├── src/                                   # Teleoperation Web Dashboard
-│   ├── App.jsx                            # Dashboard root component & WebMCP integration
-│   ├── components/
-│   │   ├── WebMcpConsole.jsx              # Interactive WebMCP tool inspector & agent log
-│   │   ├── Header.jsx                     # Topbar with WebMCP 1.0 status pill
-│   │   ├── AttitudePanel.jsx              # Live pitch/roll artificial horizon
-│   │   ├── ControlPanel.jsx               # Manual drive buttons & emergency stop
-│   │   ├── ServoControls.jsx              # Active leg height articulation sliders
-│   │   ├── SafetyControlPanel.jsx         # Live PID tuner & fall-angle selector
-│   │   └── CameraPanel.jsx                # Low-latency MJPEG video player
-│   ├── hooks/
-│   │   ├── useWebMCP.js                   # WebMCP tool registration hook
-│   │   └── useRobotDashboard.js           # Firebase state synchronization hook
-│   └── services/
-│       ├── webmcp.js                      # WebMCP W3C standard protocol polyfill
-│       └── robotApi.js                    # Firebase RTDB command & telemetry interface
-├── firmware/                              # Embedded Microcontroller Firmware
-│   ├── TALOS_Balance_Firebase/            # Main ESP32 balancing firmware
-│   │   ├── TALOS_Balance_Firebase.ino     # FreeRTOS 200Hz loop, MPU6050 filter, PID
-│   │   └── README.md                      # Calibration and tuning instructions
-│   └── ESP32_CAM_WebServer/               # ESP32-CAM Video Streamer
-│       ├── CameraWebServer_working.ino    # Video stream server
-│       ├── app_httpd.cpp                  # Stream handler
-│       ├── camera_pins.h                  # Pin configuration for AI-Thinker OV2640
-│       └── board_config.h                 # Clock & resolution configuration
-└── tools/                                 # Bridge and Relay Utilities
-    ├── camera-relay.mjs                   # Node.js MJPEG-to-WebSocket relay
-    ├── firebase-status-writer.mjs         # Telemetry synchronization helper
-    ├── robot-serial-bridge.ps1            # High-speed COM port bridge
-    └── start-camera-stream.ps1            # Automated camera launcher
+```powershell
+pio run
 ```
 
----
+| Signal | ESP32 GPIO |
+| --- | --- |
+| MPU6050 + left AS5600 SDA / SCL | 21 / 22 |
+| Right AS5600 SDA / SCL | 16 / 17 |
+| Left / right leg servo | 26 / 25 |
+| Left / right wheel servo | 27 / 33 |
 
-## Quickstart Guide
+AS5600s measure **leg position**. They provide no wheel-speed or odometry feedback. Servo power uses the regulated external supply and a common ground; the ESP32 does not supply motor current.
 
-### 1. Running the WebMCP Teleoperation Dashboard
-```bash
-# Clone the repository
-git clone https://github.com/stone35567/talos-esp32-self-balancing-robot.git
-cd talos-esp32-self-balancing-robot
+The 11 October commissioning record measured approximately 500 Hz calculation rate. A neutral, disarmed capture contained 200 USB packets at 25.02 Hz, no sequence gaps and a 40.01 ms median device interval. These are device/serial observations, not a measured end-to-end browser delay or mechanical accuracy claim. Both AS5600s still reported weak magnetic fields and both height endpoints were uncalibrated. The interlocks remain enabled.
 
-# Install dependencies
-npm install
+## Offline simulation and training
 
-# Start local development server
-npm run dev
+Create a dedicated Python environment. Saved XML models and meshes load without SolidWorks; optional native CAD re-extraction requires the original SolidWorks files and installation.
+
+```powershell
+py -m venv .venv-mujoco
+.\.venv-mujoco\Scripts\python.exe -m pip install -r tools\cae\requirements.txt
+.\.venv-mujoco\Scripts\python.exe tools\cae\talos_env.py --output outputs\talos-pivot-model-2026-10-12
 ```
-Open `http://localhost:5173` in your browser. Open browser console and test:
-```javascript
-window.__WEBMCP__.getTools();
-```
 
-### 2. Flashing the Robot Controller
-1. Open `firmware/TALOS_Balance_Firebase/TALOS_Balance_Firebase.ino` in Arduino IDE or PlatformIO.
-2. Install required libraries (`ESP32Servo`, `ArduinoJson`).
-3. Set your 2.4 GHz Wi-Fi credentials in lines 77-78.
-4. Flash to ESP32.
+The command above runs the Gymnasium and diagnostic checks on an **uncontrolled/untuned** model; falling is an expected recorded failure. Rendering requires an OpenGL-capable driver. PPO evaluation also needs the optional training dependencies described in [`tools/cae/README.md`](tools/cae/README.md).
 
----
+| Final evaluation | Survived 10 seconds | Full accuracy passes |
+| --- | ---: | ---: |
+| Diagnostic PD baseline | 0/24 | 0/24 |
+| PPO fixed, continued | 19/24 | 0/24 |
+| PPO posture + height | 0/24 | 0/24 |
+| PPO posture v2 | 22/24 | 0/24 |
 
-## Author & License
+The full criterion includes posture tracking and speed accuracy. Surviving against soft joint limits is insufficient. One training seed and assumed mass, CoM, actuator lag and contact properties limit these results. The diagnostic PD baseline is not a faithful port of V17, so this comparison does not establish superiority over the physical controller. See the [study methodology and traces](outputs/talos-training-2026-10-12/README.md).
 
-Developed by **Chanthul Kannangara**  
-NSBM Green University — Mechatronics Engineering  
-[LinkedIn Profile](https://www.linkedin.com/in/chanthul-kannangara-4554a22b3/)
+![PPO learning diagnostics from the bounded offline study](outputs/talos-training-2026-10-12/figures/learning_curve.png)
 
-Released under the **[MIT License](LICENSE)**.
+*Training returns use phase-specific rewards; compare the held-out criteria above rather than interpreting this curve as hardware performance.*
+
+## Engineering evidence and remaining work
+
+The structural CAD has 13 components; native assembly closure and the browser's display rig require separate interpretation. MuJoCo uses repaired planar linkage closure, approximate mass/inertia and simplified contacts. Its annotated pins, retaining clips and servo housings are zero-mass, non-colliding visuals. PLA/bolt friction, backlash, preload, wear, rail droop and thermal limits remain unidentified. The preliminary FEA is a screening calculation with assumed material properties.
+
+Next commissioning work is to correct encoder magnetic health, verify supported leg tracking and endpoint references, measure assembled mass/CoM and actuator response, then test low-stance balancing with support and immediate power cutoff. No simulator policy, gain or provisional travel limit has been transferred to the ESP32 by this publication.
+
+## License
+
+Project source is provided under the [MIT license](LICENSE). Third-party libraries retain their own licenses. References and supplier specifications are identified in the assessment and study documentation.

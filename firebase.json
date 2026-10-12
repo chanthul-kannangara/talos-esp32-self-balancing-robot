@@ -6,6 +6,7 @@
     "target": "talosone",
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [{"source": "**", "headers": [{"key": "Cache-Control", "value": "public,max-age=0,must-revalidate"}]}],
     "rewrites": [
       {
         "source": "**",

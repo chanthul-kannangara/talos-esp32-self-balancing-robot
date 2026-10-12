@@ -16,7 +16,10 @@ build/
 .robot-bridge.*
 .vite-*
 work/
-outputs/
+/outputs/*
+!/outputs/talos-cae-2026-10-11/
+!/outputs/talos-pivot-model-2026-10-12/
+!/outputs/talos-training-2026-10-12/
 .codex/
 .agents/
 .firebase/
@@ -26,3 +29,16 @@ outputs/
 Thumbs.db
 .vscode/
 .idea/
+
+# Device credentials, private backups, Python and PlatformIO build products
+**/network_config.h
+**/secrets.h
+**/.pio/
+.venv*/
+**/__pycache__/
+*.py[cod]
+*.bin
+*.mjb
+*.msh
+**/checkpoints/
+**/best/

@@ -1,0 +1,29 @@
+{
+  "reported_interface": "M4 for most joints; direct rotation against PLA",
+  "all_joint_sizes_verified": false,
+  "bolt_grade": null,
+  "factor_of_safety": null,
+  "example_total_mass_kg_not_measured": 2.0,
+  "load_case": "Reconstructed left linkage at q50, equal vertical ground reactions",
+  "m4_at_3mm_engagement_scenario": {
+    "nominal_shank_diameter_mm": 4.0,
+    "pla_engagement_thickness_mm_scenario": 3.0,
+    "load_multiplier_scenario": 1.0,
+    "pin_load_n": 40.85940692109805,
+    "single_shear_average_mpa": 3.2514882916479775,
+    "double_shear_average_mpa": 1.6257441458239887,
+    "projected_pla_bearing_pressure_mpa": 3.404950576758171,
+    "cantilever_bending_stress_mpa_at_5mm_overhang_scenario": 32.51488291647977,
+    "cantilever_bending_stress_mpa_at_10mm_overhang_scenario": 65.02976583295954
+  },
+  "native_knee_bore_diameter_mm": 4.95,
+  "nominal_m4_diametral_gap_if_used_in_that_native_bore_mm": 0.95,
+  "nominal_m4_radial_gap_if_used_in_that_native_bore_mm": 0.475,
+  "face_friction_example_nm_assumed": 0.3,
+  "limitations": [
+    "Nominal smooth-shank screening, not thread-root strength or fatigue",
+    "Bolt grade, true load sharing, bolt overhang, printed bore and engagement thickness unknown",
+    "Face friction scenarios are not measured PLA tribology; passive joint friction needs Jacobian mapping to hip",
+    "No preload/contact/creep analysis; no approved tightening torque or safety rating"
+  ]
+}

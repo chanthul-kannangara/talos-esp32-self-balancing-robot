@@ -11,6 +11,7 @@ import {
   updateArmed,
   updateFallAngleLimit,
   updateLegHeight,
+  updateJointAngles,
   updateLegAssist,
   updateMode,
   updateSpeed,
@@ -170,10 +171,20 @@ export function useRobotDashboard() {
     async (action) => {
       await requestPostureCalibration(action);
       addLogEntry(
-        action === "capture-bent"
+        action === "bench-hold"
+          ? "supported leg-only hold requested · wheels remain off"
+          : action === "capture-bent"
           ? "16.2 cm bent endpoint capture requested"
           : "29.2 cm extended endpoint capture requested",
       );
+    },
+    [addLogEntry],
+  );
+
+  const handleJointCommandApply = useCallback(
+    async (leftAngle, rightAngle, jointSpeed) => {
+      await updateJointAngles(leftAngle, rightAngle, jointSpeed);
+      addLogEntry(`joint bend requested · L ${leftAngle}° / R ${rightAngle}° at ${jointSpeed}°/s`);
     },
     [addLogEntry],
   );
@@ -231,6 +242,7 @@ export function useRobotDashboard() {
     handleEmergencyStop,
     handleFallAngleLimitChange,
     handleHeightCommandApply,
+    handleJointCommandApply,
     handleLegAssistChange,
     handleModeChange,
     handleSpeedChange,

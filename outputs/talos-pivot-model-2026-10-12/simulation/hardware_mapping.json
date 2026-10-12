@@ -1,0 +1,438 @@
+{
+  "pins": [
+    {
+      "name": "left_support_hip",
+      "owner": "left_support",
+      "size_user_reported": "M4",
+      "axis_site": "left_support_hip_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        0
+      ],
+      "cad_component": "Left Leg Support-1",
+      "cad_point_part_local_m": [
+        0.0,
+        0.077725948694,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "hex",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "left_knee",
+      "owner": "left_upper",
+      "size_user_reported": "M4",
+      "axis_site": "left_knee_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.1
+      ],
+      "cad_component": "TALOS_Left_Leg_Link-1",
+      "cad_point_part_local_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "hex",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "left_follower",
+      "owner": "left_support",
+      "size_user_reported": "M4",
+      "axis_site": "left_follower_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.1035135122941325
+      ],
+      "cad_component": "Left Leg Support-1",
+      "cad_point_part_local_m": [
+        0.0,
+        -0.0257875636,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.034,
+      "head_style_photo_inferred": "hex",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "left_upper_retainer",
+      "owner": "left_upper",
+      "size_user_reported": "M4",
+      "axis_site": "left_upper_retainer_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.048667651997
+      ],
+      "cad_component": "TALOS_Left_Leg_Link-1",
+      "cad_point_part_local_m": [
+        0.0,
+        0.051332348003,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "socket",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "left_support_retainer",
+      "owner": "left_support",
+      "size_user_reported": "M3",
+      "axis_site": "left_support_retainer_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.08572
+      ],
+      "cad_component": "Left Leg Support-1",
+      "cad_point_part_local_m": [
+        0.0,
+        -0.007994051306,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "socket",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "right_support_hip",
+      "owner": "right_support",
+      "size_user_reported": "M4",
+      "axis_site": "right_support_hip_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        0
+      ],
+      "cad_component": "Right Leg Support-1",
+      "cad_point_part_local_m": [
+        0.0,
+        0.077725948694,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "hex",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "right_knee",
+      "owner": "right_upper",
+      "size_user_reported": "M4",
+      "axis_site": "right_knee_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.1
+      ],
+      "cad_component": "TALOS_Right_Leg_Link-1",
+      "cad_point_part_local_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "hex",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "right_follower",
+      "owner": "right_support",
+      "size_user_reported": "M4",
+      "axis_site": "right_follower_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.1035135122941325
+      ],
+      "cad_component": "Right Leg Support-1",
+      "cad_point_part_local_m": [
+        0.0,
+        -0.0257875636,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.034,
+      "head_style_photo_inferred": "hex",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "right_upper_retainer",
+      "owner": "right_upper",
+      "size_user_reported": "M4",
+      "axis_site": "right_upper_retainer_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.048667651997
+      ],
+      "cad_component": "TALOS_Right_Leg_Link-1",
+      "cad_point_part_local_m": [
+        0.0,
+        0.051332348003,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "socket",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    },
+    {
+      "name": "right_support_retainer",
+      "owner": "right_support",
+      "size_user_reported": "M3",
+      "axis_site": "right_support_retainer_axis",
+      "point_owner_local_m": [
+        0,
+        0,
+        -0.08572
+      ],
+      "cad_component": "Right Leg Support-1",
+      "cad_point_part_local_m": [
+        0.0,
+        -0.007994051306,
+        0.0
+      ],
+      "under_head_length_m_assumed": 0.028,
+      "head_style_photo_inferred": "socket",
+      "physics": "Ideal existing link pivot/retainer; visual pin adds no mass, contact or independent degree of freedom"
+    }
+  ],
+  "clips": [
+    {
+      "name": "left_upper_retaining_clip",
+      "owner": "left_upper",
+      "source_component": "Left Wheel Clip-2",
+      "source_holes_part_local_m": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.05133,
+          0.0
+        ]
+      ],
+      "mapped_holes_owner_local_m": [
+        [
+          0.0,
+          0.017,
+          -0.1
+        ],
+        [
+          0.0,
+          0.017,
+          -0.048670000000000005
+        ]
+      ],
+      "target_holes_owner_local_m": [
+        [
+          0.0,
+          0.0,
+          -0.1
+        ],
+        [
+          0.0,
+          0.0,
+          -0.048667651997
+        ]
+      ],
+      "in_plane_registration_residual_m": [
+        0.0,
+        2.3480030000022634e-06
+      ],
+      "axial_placement": "schematic; no measured grip, washer, spacer or preload specification"
+    },
+    {
+      "name": "left_support_retaining_clip",
+      "owner": "left_support",
+      "source_component": "support clips - Left-1",
+      "source_holes_part_local_m": [
+        [
+          0.0,
+          -0.007982839377,
+          0.0
+        ],
+        [
+          0.0,
+          0.009807160623,
+          0.0
+        ]
+      ],
+      "mapped_holes_owner_local_m": [
+        [
+          0.0,
+          0.023,
+          -0.1035135122941325
+        ],
+        [
+          0.0,
+          0.023,
+          -0.0857235122941325
+        ]
+      ],
+      "target_holes_owner_local_m": [
+        [
+          0.0,
+          0.0,
+          -0.1035135122941325
+        ],
+        [
+          0.0,
+          0.0,
+          -0.08572
+        ]
+      ],
+      "in_plane_registration_residual_m": [
+        0.0,
+        3.512294132493321e-06
+      ],
+      "axial_placement": "schematic; no measured grip, washer, spacer or preload specification"
+    },
+    {
+      "name": "right_upper_retaining_clip",
+      "owner": "right_upper",
+      "source_component": "Right Wheel Clip -2",
+      "source_holes_part_local_m": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.05133,
+          0.0
+        ]
+      ],
+      "mapped_holes_owner_local_m": [
+        [
+          0.0,
+          -0.017,
+          -0.1
+        ],
+        [
+          0.0,
+          -0.017,
+          -0.048670000000000005
+        ]
+      ],
+      "target_holes_owner_local_m": [
+        [
+          0.0,
+          0.0,
+          -0.1
+        ],
+        [
+          0.0,
+          0.0,
+          -0.048667651997
+        ]
+      ],
+      "in_plane_registration_residual_m": [
+        0.0,
+        2.3480030000022634e-06
+      ],
+      "axial_placement": "schematic; no measured grip, washer, spacer or preload specification"
+    },
+    {
+      "name": "right_support_retaining_clip",
+      "owner": "right_support",
+      "source_component": "support clips - Right-1",
+      "source_holes_part_local_m": [
+        [
+          0.0,
+          -0.007982839377,
+          0.0
+        ],
+        [
+          0.0,
+          0.009807160623,
+          0.0
+        ]
+      ],
+      "mapped_holes_owner_local_m": [
+        [
+          0.0,
+          -0.023,
+          -0.1035135122941325
+        ],
+        [
+          0.0,
+          -0.023,
+          -0.0857235122941325
+        ]
+      ],
+      "target_holes_owner_local_m": [
+        [
+          0.0,
+          0.0,
+          -0.1035135122941325
+        ],
+        [
+          0.0,
+          0.0,
+          -0.08572
+        ]
+      ],
+      "in_plane_registration_residual_m": [
+        0.0,
+        3.512294132493321e-06
+      ],
+      "axial_placement": "schematic; no measured grip, washer, spacer or preload specification"
+    }
+  ],
+  "wheel_servos": [
+    {
+      "side": "left",
+      "case_owner": "left_lower",
+      "output_owner": "left_wheel",
+      "joint": "left_wheel_joint",
+      "wheel_axis_lower_part_local_m": [
+        0,
+        -0.12408,
+        0
+      ],
+      "wheel_axis_lower_body_local_m": [
+        0,
+        0,
+        -0.09927
+      ],
+      "mounting_screws": "Not modeled as rotating linkage pivots"
+    },
+    {
+      "side": "right",
+      "case_owner": "right_lower",
+      "output_owner": "right_wheel",
+      "joint": "right_wheel_joint",
+      "wheel_axis_lower_part_local_m": [
+        0,
+        -0.12408,
+        0
+      ],
+      "wheel_axis_lower_body_local_m": [
+        0,
+        0,
+        -0.09927
+      ],
+      "mounting_screws": "Not modeled as rotating linkage pivots"
+    }
+  ],
+  "photo_filenames": [
+    "codex-clipboard-c580773c-b78f-44c8-afe8-8b09c261e9b5.png",
+    "codex-clipboard-2c270c17-6281-44b0-a2e3-bba7c61ff04e.png",
+    "codex-clipboard-db172a08-f9ad-4776-8967-0924f73b9640.png",
+    "codex-clipboard-2f4b2630-234c-4c7e-a19f-bea92b45874d.png",
+    "codex-clipboard-3c1d9cb9-5a59-4822-bfb1-ba05cc3ad4de.png",
+    "codex-clipboard-89981600-96f3-4794-befb-44a652e6c444.png",
+    "codex-clipboard-3e39f6aa-4a6b-4dc7-b66d-43942e192dc6.png",
+    "codex-clipboard-fd77c97e-0c83-4b0b-8472-2d845081a97a.png",
+    "codex-clipboard-20f7a84b-1099-4f14-b2ee-1b57a9981469.png"
+  ],
+  "clip_alignment_user_confirmed": true
+}

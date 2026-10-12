@@ -1,7 +1,7 @@
-import { OctagonAlert, ShieldAlert } from "lucide-react";
+import { OctagonAlert, Power, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 
-export default function EmergencyStop({ active, onStop }) {
+export default function EmergencyStop({ active, onStop, onDisarm }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,6 +17,15 @@ export default function EmergencyStop({ active, onStop }) {
     }
   }
 
+  async function disarm() {
+    setError("");
+    try {
+      await onDisarm();
+    } catch (stopError) {
+      setError(stopError?.message || "Balance-off request failed.");
+    }
+  }
+
   return (
     <section
       className={`estop-panel ${active ? "is-active" : ""}`}
@@ -26,16 +35,14 @@ export default function EmergencyStop({ active, onStop }) {
         <ShieldAlert size={21} />
       </span>
       <div className="estop-copy">
-        <span className="section-kicker">Immediate safety action</span>
         <h2 id="estop-heading">Emergency stop</h2>
         <p>
-          Immediately neutralizes wheel and leg outputs. Keep a physical motor-power cutoff
-          within reach.
+          Stops wheel and leg outputs. Keep your physical power cutoff nearby.
         </p>
         {error ? <span className="estop-error">{error}</span> : null}
       </div>
       <div className="estop-state">
-        <span>{active ? "Active" : "Ready"}</span>
+        {onDisarm ? <button className="quick-disarm-button" type="button" onClick={disarm} disabled={active}><Power size={16} aria-hidden="true" /><span>Balance off</span></button> : null}
         <button
           className="estop-btn"
           type="button"
@@ -44,7 +51,7 @@ export default function EmergencyStop({ active, onStop }) {
           title="Immediately stop wheel and leg outputs"
         >
           <OctagonAlert size={19} aria-hidden="true" />
-          {busy ? "Sending…" : "STOP NOW"}
+          {busy ? "Sending…" : active ? "STOP ACTIVE" : "STOP NOW"}
         </button>
       </div>
     </section>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TALOS pose test fixture</title></head>
+<body><div id="root"></div><script type="module">
+import React from "react";
+import { createRoot } from "react-dom/client";
+import RobotPosePanel from "/src/components/RobotPosePanel.jsx";
+import { createRobotState } from "/src/services/robotApi.js";
+import { createVisualPose } from "/src/services/poseTelemetry.js";
+import "/src/styles/global.css";
+import "/src/styles/workspace.css";
+function Fixture() {
+  const [left, setLeft] = React.useState(12);
+  const [right, setRight] = React.useState(35);
+  const [online, setOnline] = React.useState(true);
+  const [pitch, setPitch] = React.useState(0);
+  const [healthy, setHealthy] = React.useState(true);
+  const [reference, setReference] = React.useState(true);
+  const [roll, setRoll] = React.useState(0);
+  const [diagnostic, setDiagnostic] = React.useState(false);
+  const status = createVisualPose(createRobotState({status: {online, jointControlSupported: true, benchModeActive: false, extendedHeightCaptured: reference, encodersHealthy: healthy,
+    leftBendDeg: left, rightBendDeg: right, leftBendTargetDeg: left, rightBendTargetDeg: right,
+    leftEncoderDeg: (350 - left + 360) % 360, rightEncoderDeg: (50 - right + 360) % 360,
+    leftMagneticStatus: healthy ? 0x20 : 0x30, rightMagneticStatus: healthy ? 0x20 : 0x30,
+    leftEncoderSampleAgeMs: 0, rightEncoderSampleAgeMs: 0, leftEncoderSign: 1, rightEncoderSign: 1,
+    leftExtendedEncoderDeg: 350, rightExtendedEncoderDeg: 50, poseBootId: 1,
+    imuSampleHealthy: true, imuErrors: 10, tilt: pitch, roll}}).status, {bootId:1,left:350,right:50}, diagnostic);
+  return React.createElement("main", {style:{maxWidth:700,margin:"24px auto",padding:16}},
+    React.createElement("h1", null, "Simulation test fixture"),
+    React.createElement("p", null, "Synthetic angles only. Not connected to the robot."),
+    React.createElement("label", null, "Left simulated bend", React.createElement("input", {type:"range",min:0,max:90,value:left,onChange:event=>setLeft(Number(event.target.value)),"aria-label":"Left simulated bend"})),
+    React.createElement("label", null, "Right simulated bend", React.createElement("input", {type:"range",min:0,max:90,value:right,onChange:event=>setRight(Number(event.target.value)),"aria-label":"Right simulated bend"})),
+    React.createElement("label", null, React.createElement("input", {type:"checkbox",checked:online,onChange:event=>setOnline(event.target.checked)}), "Simulated connection"),
+    React.createElement("label", null, "Simulated pitch", React.createElement("input", {type:"range",min:-30,max:30,value:pitch,onChange:event=>setPitch(Number(event.target.value)),"aria-label":"Simulated pitch"})),
+    React.createElement("label", null, "Simulated roll", React.createElement("input", {type:"range",min:-30,max:30,value:roll,onChange:event=>setRoll(Number(event.target.value)),"aria-label":"Simulated roll"})),
+    React.createElement("label", null, React.createElement("input", {type:"checkbox",checked:healthy,onChange:event=>setHealthy(event.target.checked)}), "Simulated healthy encoders"),
+    React.createElement("label", null, React.createElement("input", {type:"checkbox",checked:reference,onChange:event=>setReference(event.target.checked)}), "Simulated extended reference"),
+    React.createElement("label", null, React.createElement("input", {type:"checkbox",checked:diagnostic,onChange:event=>setDiagnostic(event.target.checked)}), "Simulated diagnostic preview"),
+    React.createElement(RobotPosePanel, {status,active:true}));
+}
+createRoot(document.getElementById("root")).render(React.createElement(Fixture));
+</script></body></html>

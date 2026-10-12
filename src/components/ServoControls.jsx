@@ -32,6 +32,8 @@ export default function ServoControls({
   onHeightCommandApply,
   onLegAssistChange,
   onPostureCalibration,
+  onJointCommandApply,
+  onStopDisarm,
 }) {
   const [draftPosition, setDraftPosition] = useState(Number(legPosition));
   const [draftSpeed, setDraftSpeed] = useState(Number(legSpeed));
@@ -39,6 +41,10 @@ export default function ServoControls({
   const [busyAction, setBusyAction] = useState("");
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState("");
+  const [leftBend, setLeftBend] = useState(0);
+  const [rightBend, setRightBend] = useState(0);
+  const [jointSpeed, setJointSpeed] = useState(2);
+  const [linked, setLinked] = useState(true);
 
   useEffect(() => {
     if (!dirty) {
@@ -57,8 +63,16 @@ export default function ServoControls({
     status.online &&
       status.heightCalibrationValid &&
       status.standingEnabled &&
+      !status.benchMode &&
       !status.emergencyStopActive,
   );
+  const jointReady = Boolean(status.online && status.jointSupported &&
+    status.extendedHeightCaptured && status.encodersHealthy && status.benchMode &&
+    status.controlOwner === "dashboard" && !status.balancingEnabled && !status.emergencyStopActive);
+  const leftLimit = Math.max(0, Number(status.leftBendLimitDeg || 0));
+  const rightLimit = Math.max(0, Number(status.rightBendLimitDeg || 0));
+  const jointDraftValid = leftBend >= 0 && leftBend <= leftLimit &&
+    rightBend >= 0 && rightBend <= rightLimit && jointSpeed >= 1 && jointSpeed <= 15;
   const calibrationLocked = Boolean(
     !status.online ||
       status.balancingEnabled ||
@@ -106,6 +120,21 @@ export default function ServoControls({
     );
   }
 
+  function enableBenchHold() {
+    if (!window.confirm("Support the chassis securely with both wheels clear of the ground. Keep hands and wires clear of the linkages. Enable leg-only hold? Wheels stay OFF.")) return;
+    runAction("bench-hold", () => onPostureCalibration("bench-hold"),
+      "Leg-only hold requested. Wait for the ESP32 acknowledgement before applying angles.");
+  }
+
+  function changeBend(side, value) {
+    const next = Number(value);
+    if (linked) {
+      setLeftBend(Math.min(next, leftLimit, rightLimit));
+      setRightBend(Math.min(next, leftLimit, rightLimit));
+    } else if (side === "left") setLeftBend(next);
+    else setRightBend(next);
+  }
+
   return (
     <div className="servo-controls" aria-labelledby="posture-heading">
       <div className="servo-controls__heading">
@@ -122,11 +151,11 @@ export default function ServoControls({
       <div className="height-readout" aria-label="Robot height feedback">
         <span>
           <Ruler size={15} aria-hidden="true" />
-          Live estimate
+          {status.online ? "Live estimate" : "Last reported height"}
         </span>
-        <strong>{Number.isFinite(liveHeightCm) ? `${liveHeightCm.toFixed(1)} cm` : "--"}</strong>
+        <strong>{status.heightCalibrationValid && Number.isFinite(liveHeightCm) && liveHeightCm > 0 ? `${liveHeightCm.toFixed(1)} cm` : "Uncalibrated"}</strong>
         <small>
-          Holding {Number.isFinite(reportedTargetHeightCm)
+          Holding {status.heightCalibrationValid && Number.isFinite(reportedTargetHeightCm) && reportedTargetHeightCm > 0
             ? `${reportedTargetHeightCm.toFixed(1)} cm`
             : "--"}
         </small>
@@ -138,7 +167,7 @@ export default function ServoControls({
           Wheel authority
         </span>
         <strong>{Number(status.wheelAuthorityPercent || 0).toFixed(0)}%</strong>
-        <small>Automatically rises with body height</small>
+        <small>{status.heightCalibrationValid ? "Height-scheduled controller limits" : "Base limits · height calibration missing"}</small>
       </div>
 
       <label className="range-control range-control--wide" htmlFor="leg-position">
@@ -194,12 +223,50 @@ export default function ServoControls({
       </button>
 
       <p className={`height-control-state ${heightControlReady ? "is-ready" : ""}`}>
-        {status.heightCalibrationValid
+        {!status.online
+          ? "Connect TALOS to receive height feedback and control its posture."
+          : status.benchMode ? "Leg-only testing active. Stop hold before using balanced height control."
+          : status.heightCalibrationValid
           ? status.standingEnabled
             ? `${formatCommandState(status.heightCommandState)} · ${status.heightCommandMessage || "Ready for a fresh height request."}`
             : "Turn Balance ON and let leg hold engage before moving height."
           : "Calibrate both mechanical endpoints before using height control."}
       </p>
+
+      <section className="joint-controls" aria-labelledby="joint-heading">
+        <div className="joint-controls__heading">
+          <div><p className="eyebrow">Supported commissioning</p><h3 id="joint-heading">Precise leg angles</h3></div>
+          <span className="joint-mode-badge">Wheels OFF</span>
+        </div>
+        <p>0° is the captured fully extended position. Commands move only after Apply; the 3D view follows measured encoders, not these sliders.</p>
+        <div className="joint-actions">
+          <button type="button" onClick={enableBenchHold} disabled={calibrationLocked || !status.jointSupported || !status.extendedHeightCaptured || Boolean(busyAction)}>Enable leg-only hold</button>
+          <button type="button" onClick={() => runAction("stop-hold", onStopDisarm, "Stop requested for all four servos.")} disabled={!status.online || Boolean(busyAction)}>Stop hold</button>
+        </div>
+        <label className="joint-link"><input type="checkbox" checked={linked} onChange={(event) => {
+          setLinked(event.target.checked);
+          if (event.target.checked) {
+            const common = Math.min(leftBend, leftLimit, rightLimit);
+            setLeftBend(common);
+            setRightBend(common);
+          }
+        }} />Move both legs together</label>
+        <div className="joint-fields">
+          {[["left", "Left", leftBend, leftLimit], ["right", "Right", rightBend, rightLimit]].map(([side, label, bend, limit]) => (
+            <div key={side} className="joint-field">
+              <label htmlFor={`${side}-bend`}>{label} bend <span>Max {limit.toFixed(1)}°</span></label>
+              <div><input id={`${side}-bend`} type="number" min="0" max={limit} step="0.5" value={bend} onChange={(event) => changeBend(side, event.target.value)} /><span>°</span></div>
+              <input aria-label={`${label} bend slider`} type="range" min="0" max={limit || 8} step="0.5" value={bend} disabled={!status.extendedHeightCaptured} onChange={(event) => changeBend(side, event.target.value)} />
+              <small>Measured {status.extendedHeightCaptured ? `${Number(status[`${side}BendDeg`]).toFixed(1)}°` : "—"}</small>
+            </div>
+          ))}
+        </div>
+        <label className="joint-speed" htmlFor="joint-speed">Joint speed <span><input id="joint-speed" type="number" min="1" max="15" step="1" value={jointSpeed} onChange={(event) => setJointSpeed(Number(event.target.value))} />°/s</span></label>
+        <button className="height-apply-button" type="button" disabled={!jointReady || !jointDraftValid || Boolean(busyAction)} onClick={() => runAction("joint", () => onJointCommandApply(leftBend, rightBend, jointSpeed), "Angle request sent. Check measured angles and device acknowledgement.")}>Apply leg angles</button>
+        <p className="joint-feedback" role="status">{!status.online ? "Connect TALOS to use joint control." : !status.jointSupported ? "Upload V17 firmware to enable angle controls." : status.controlOwner === "serial" ? "Serial owns control. Send remote on COM8 to hand control to the website." : !status.extendedHeightCaptured ? "Capture the fully extended reference first." : `${formatCommandState(status.jointCommandState)} · ${status.jointCommandMessage}`}</p>
+        {status.online && status.encoderMagnetWarning ? <p className="height-feedback is-error" role="alert">{status.encoderHealthMessage} Leg movement remains blocked.</p> : null}
+        {!status.heightCalibrationValid ? <small>Range limited to 8° until both mechanical endpoints are calibrated. Do not force a linkage against its stop.</small> : null}
+      </section>
 
       <label className="assist-toggle" htmlFor="leg-assist">
         <span className="assist-toggle__copy">
@@ -213,6 +280,7 @@ export default function ServoControls({
           id="leg-assist"
           type="checkbox"
           checked={legAssist}
+          disabled={!status.online || !status.heightCalibrationValid || status.benchMode}
           onChange={(event) => onLegAssistChange(event.target.checked)}
         />
         <span className="toggle-track" aria-hidden="true"><span /></span>

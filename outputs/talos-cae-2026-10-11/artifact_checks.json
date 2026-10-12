@@ -1,0 +1,24 @@
+{
+  "python_compilation": [
+    "analyse.py",
+    "fea.py",
+    "joints.py",
+    "package.py",
+    "report.py",
+    "simulation.py",
+    "talos_env.py",
+    "train_offline.py",
+    "verify_artifacts.py"
+  ],
+  "saved_cad_source_hashes_unchanged": 32,
+  "calculation_closure_check": "passed",
+  "fea_force_moment_checks": "passed",
+  "simulation_api_checks": "passed",
+  "untuned_simulation_baseline": "all five runs fell; not a balance success",
+  "pdf_pages": 15,
+  "pdf_section_pagination": "passed",
+  "reference_links": 21,
+  "pdf_sha256": "e3cd8ddfcebcc96ec125c50cbe5bbc4e8d672311ab9670ee006b15f562e80e3b",
+  "raster_visual_review_complete": true,
+  "no_hardware_test_or_trained_policy": true
+}

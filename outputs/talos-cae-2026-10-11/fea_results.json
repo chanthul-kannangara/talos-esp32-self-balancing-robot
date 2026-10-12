@@ -1,0 +1,144 @@
+{
+  "status": "Screening linear solid FEA, not a 50% infill or joint-contact validation",
+  "boundary_conditions": "All translations fixed on 3mm and 4.0215mm hip bores; cosine-distributed knee bore traction",
+  "load_case": "Left linkage q50, 2 kg illustrative total mass, equal vertical support",
+  "material": "Homogeneous isotropic E=1.5GPa, nu=0.35; sensitivity only, not measured PLA properties",
+  "meshes": [
+    {
+      "mesh_size_mm": 2.4,
+      "nodes": 5708,
+      "tetrahedra": 23070,
+      "young_modulus_pa_assumed": 1500000000.0,
+      "poisson_ratio_assumed": 0.35,
+      "force_n": [
+        15.79478623467297,
+        37.68309782574756,
+        0.0
+      ],
+      "mesh_volume_cm3": 29.318902672373003,
+      "fixed_hip_nodes": 200,
+      "loaded_bore_faces": 212,
+      "max_displacement_mm": 0.4569879409099501,
+      "load_direction_compliance_mm": 0.16394880519558527,
+      "von_mises_max_mpa_including_bc_peak": 4.5133074760125,
+      "von_mises_volume_p95_mpa": 1.1175086141125488,
+      "von_mises_volume_p99_mpa": 1.9654260254287466,
+      "von_mises_bulk_p95_mpa_15mm_outside_clamp": 0.9569703688310193,
+      "peak_location_local_mm": [
+        3.98772025320004,
+        99.28969275021865,
+        -5.3221969048322055
+      ],
+      "reaction_force_sum_n": [
+        -15.79478623469503,
+        -37.68309782573989,
+        -2.4966868850118118e-12
+      ],
+      "force_balance_residual_n": 2.349421359423103e-11,
+      "moment_balance_residual_nm": 1.2242561611633847e-12,
+      "free_equation_relative_residual": 8.996505241198613e-12,
+      "affine_strain_patch_test_max_error": 2.229119666630197e-16,
+      "strain_energy_j": 0.0033494254728571263,
+      "cad_volume_relative_error": 0.00040083581407435176
+    },
+    {
+      "mesh_size_mm": 1.7,
+      "nodes": 11734,
+      "tetrahedra": 51313,
+      "young_modulus_pa_assumed": 1500000000.0,
+      "poisson_ratio_assumed": 0.35,
+      "force_n": [
+        15.79478623467297,
+        37.68309782574756,
+        0.0
+      ],
+      "mesh_volume_cm3": 29.323212941042623,
+      "fixed_hip_nodes": 297,
+      "loaded_bore_faces": 388,
+      "max_displacement_mm": 0.46467334989792625,
+      "load_direction_compliance_mm": 0.1664921465551866,
+      "von_mises_max_mpa_including_bc_peak": 4.31335001665386,
+      "von_mises_volume_p95_mpa": 1.1323365665180052,
+      "von_mises_volume_p99_mpa": 1.9671654199964959,
+      "von_mises_bulk_p95_mpa_15mm_outside_clamp": 0.9656212160630997,
+      "peak_location_local_mm": [
+        3.9990270604466813,
+        100.6565052346535,
+        -5.368091722399074
+      ],
+      "reaction_force_sum_n": [
+        -15.794786234697604,
+        -37.68309782574411,
+        -2.3407673369058024e-11
+      ],
+      "force_balance_residual_n": 3.415391672778941e-11,
+      "moment_balance_residual_nm": 1.7517211243892646e-12,
+      "free_equation_relative_residual": 1.638037822235185e-11,
+      "affine_strain_patch_test_max_error": 2.0144476364780672e-16,
+      "strain_energy_j": 0.003401385182632731,
+      "cad_volume_relative_error": 0.0002538814410640855
+    },
+    {
+      "mesh_size_mm": 1.3,
+      "nodes": 20753,
+      "tetrahedra": 95730,
+      "young_modulus_pa_assumed": 1500000000.0,
+      "poisson_ratio_assumed": 0.35,
+      "force_n": [
+        15.79478623467297,
+        37.68309782574756,
+        0.0
+      ],
+      "mesh_volume_cm3": 29.329504966813957,
+      "fixed_hip_nodes": 402,
+      "loaded_bore_faces": 524,
+      "max_displacement_mm": 0.46793197008339293,
+      "load_direction_compliance_mm": 0.16756990828202248,
+      "von_mises_max_mpa_including_bc_peak": 4.893324302690564,
+      "von_mises_volume_p95_mpa": 1.1275812746620038,
+      "von_mises_volume_p99_mpa": 2.050894356227049,
+      "von_mises_bulk_p95_mpa_15mm_outside_clamp": 0.9701460367646723,
+      "peak_location_local_mm": [
+        4.419072555018515,
+        98.60061199526406,
+        -3.5072361478102843
+      ],
+      "reaction_force_sum_n": [
+        -15.794786234622942,
+        -37.683097825760605,
+        1.0482559265057034e-11
+      ],
+      "force_balance_residual_n": 5.275747318408528e-11,
+      "moment_balance_residual_nm": 1.0542372163658376e-12,
+      "free_equation_relative_residual": 2.6217119102806125e-11,
+      "affine_strain_patch_test_max_error": 3.3219954564955856e-16,
+      "strain_energy_j": 0.0034234035351131177,
+      "cad_volume_relative_error": 3.936100786960939e-05
+    }
+  ],
+  "last_two_mesh_relative_changes": {
+    "max_displacement_mm": 0.007012711588005871,
+    "von_mises_volume_p95_mpa": 0.0041995392506171125,
+    "von_mises_max_mpa_including_bc_peak": 0.13446028812811872
+  },
+  "stiffness_sensitivity": [
+    {
+      "young_gpa": 0.8,
+      "max_displacement_mm": 0.8773724439063618
+    },
+    {
+      "young_gpa": 1.5,
+      "max_displacement_mm": 0.467931970083393
+    },
+    {
+      "young_gpa": 2.6,
+      "max_displacement_mm": 0.26996075197118824
+    }
+  ],
+  "strength_factor_of_safety": null,
+  "limitations": [
+    "No infill cells, layer anisotropy, creep, impact, fatigue, bolts, or contact stress",
+    "Clamped hip is deliberately stiff and may create mesh-sensitive peak stress",
+    "No full robot or encoder housing failure analysis; no physical coupon validation"
+  ]
+}

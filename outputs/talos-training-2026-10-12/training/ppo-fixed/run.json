@@ -1,0 +1,25 @@
+{
+  "algorithm": "PPO",
+  "label": "ppo-fixed",
+  "requested_steps": 65536,
+  "total_steps_in_policy": 65536,
+  "seed": 41,
+  "wall_seconds": 193.7663792000003,
+  "height_curriculum": false,
+  "resume": null,
+  "observations": 21,
+  "actions": 4,
+  "physics_hz": 500,
+  "commands_hz": 50,
+  "model_sha256": "9606a1ea1bed8ffe3ee64cfde291cb6a0c5e6075a30101763e5336094839bb80",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "stable-baselines3": "2.9.0",
+    "mujoco": "3.15.0",
+    "gymnasium": "1.4.0",
+    "numpy": "2.3.5"
+  },
+  "actor_has_wheel_encoder_or_base_velocity": false,
+  "privileged_truth_used_for_reward_and_evaluation_only": true,
+  "hardware_validated": false
+}

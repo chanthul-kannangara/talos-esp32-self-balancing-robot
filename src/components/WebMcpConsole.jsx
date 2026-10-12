@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Bot, CheckCircle2, ChevronRight, Code2, Play, Terminal, X, Zap, Shield, Cpu } from "lucide-react";
 
 export default function WebMcpConsole({ isOpen, onClose, tools, executionLogs, executeTool }) {
@@ -7,6 +7,41 @@ export default function WebMcpConsole({ isOpen, onClose, tools, executionLogs, e
   const [toolInputs, setToolInputs] = useState({});
   const [testResult, setTestResult] = useState(null);
   const [isExecuting, setIsExecuting] = useState(false);
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialogRef.current?.querySelector(".webmcp-close-btn")?.focus();
+
+    function handleDialogKeys(event) {
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = [...dialogRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), a[href], [tabindex="0"]')]
+        .filter((element) => element.getClientRects().length > 0);
+      const firstElement = focusable[0];
+      const lastElement = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement?.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement?.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleDialogKeys);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleDialogKeys);
+      previousFocus?.focus();
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -52,7 +87,7 @@ export default function WebMcpConsole({ isOpen, onClose, tools, executionLogs, e
   };
 
   return (
-    <div className="webmcp-overlay" role="dialog" aria-modal="true" aria-labelledby="webmcp-title">
+    <div className="webmcp-overlay" ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="webmcp-title">
       <div className="webmcp-backdrop" onClick={onClose} />
       <div className="webmcp-modal panel">
         {/* Header */}

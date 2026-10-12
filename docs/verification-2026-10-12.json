@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-12",
+  "dashboard": {
+    "production_build": "passed",
+    "vite": "5.4.21",
+    "cad_rig_check": "passed",
+    "structural_meshes": 13,
+    "reference_geometry_preserved": true,
+    "independent_leg_motion": true,
+    "warning": "Three.js chunk exceeds the default 500 kB size advisory; it is lazy-loaded."
+  },
+  "firmware": {
+    "platformio_build": "passed",
+    "environment": "esp32dev",
+    "platformio_core": "6.1.19",
+    "ram_bytes": 52132,
+    "flash_bytes": 1111433,
+    "current_local_v17_source_identical": true,
+    "uploaded": false
+  },
+  "offline_checks": {
+    "mujoco_version": "3.15.0",
+    "compiled_model_count": 12,
+    "models": [
+      "outputs/talos-cae-2026-10-11/simulation/talos-h150.xml",
+      "outputs/talos-cae-2026-10-11/simulation/talos-h180.xml",
+      "outputs/talos-cae-2026-10-11/simulation/talos-h210.xml",
+      "outputs/talos-cae-2026-10-11/simulation/talos.xml",
+      "outputs/talos-pivot-model-2026-10-12/simulation/talos-h150.xml",
+      "outputs/talos-pivot-model-2026-10-12/simulation/talos-h180.xml",
+      "outputs/talos-pivot-model-2026-10-12/simulation/talos-h210.xml",
+      "outputs/talos-pivot-model-2026-10-12/simulation/talos.xml",
+      "outputs/talos-training-2026-10-12/simulation/talos-h150.xml",
+      "outputs/talos-training-2026-10-12/simulation/talos-h180.xml",
+      "outputs/talos-training-2026-10-12/simulation/talos-h210.xml",
+      "outputs/talos-training-2026-10-12/simulation/talos.xml"
+    ],
+    "finite_100_step_smoke_tests": true,
+    "gymnasium_checker": "passed",
+    "observations": 21,
+    "actions": 4,
+    "policy_same_seed_reproducibility": true,
+    "policy_rollout_duration_s": [
+      2.0000000000000013,
+      2.0000000000000013
+    ],
+    "policy_sha256": "a1b9e21fbf0fd98934e307504315d4bda964231f5b0c05bf917caa3c53e2fe7b",
+    "dated_evidence_unchanged": true,
+    "checked_evidence_files": 239,
+    "physical_robot_tested": false,
+    "hardware_export_approved": false
+  },
+  "publication_review": {
+    "private_environment_and_flash_backups_excluded": true,
+    "legacy_network_credentials_replaced": true,
+    "unexpected_credential_patterns_found": false,
+    "reviewed_wifi_portal_TOKEN_is_template_placeholder": true,
+    "new_hardware_test_performed": false
+  }
+}

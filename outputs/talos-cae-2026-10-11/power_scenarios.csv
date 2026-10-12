@@ -1,0 +1,4 @@
+scenario,per_leg_current_a,total_output_power_w,battery_current_at_10_8v_a,battery_current_at_12_6v_a
+6V low stall extrapolation,2.294117647058824,54.02941176470589,5.885556837113931,5.044763003240513
+6V high stall extrapolation,3.0,62.5,6.808278867102397,5.835667600373483
+6.8V published high used as conservative reserve,3.4,67.30000000000001,7.331154684095862,6.283846872082168

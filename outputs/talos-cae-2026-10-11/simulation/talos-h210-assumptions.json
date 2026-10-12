@@ -1,0 +1,34 @@
+{
+  "status": "Offline provisional model. Not calibrated, not a trained hardware policy.",
+  "total_mass_kg_example_not_measured": 2.0,
+  "leg_q_reference_rad": [
+    0.5388776812807605,
+    0.5078378568270997
+  ],
+  "body_com_above_driven_hip_m_assumed": 0.03,
+  "physics_dt_s": 0.002,
+  "servo_frame_dt_s": 0.02,
+  "wheel_radius_m": 0.0425,
+  "wheel_speed_limit_rad_s_assumed": 5.235987755982989,
+  "leg_speed_limit_rad_s_assumed": 7.5398223686155035,
+  "servo_lag_s_assumed": [
+    0.08,
+    0.08,
+    0.06,
+    0.06
+  ],
+  "servo_command_delay_frames_assumed": 1,
+  "deadband_fraction_assumed": 0.03,
+  "initial_root_height_m": 0.21103128148506434,
+  "initial_left_driven_hip_height_m": 0.20999999999999996,
+  "limitations": [
+    "Masses, inertia, CoM, friction, motor curve, lag and deadband are illustrative",
+    "Four-bar planar closure repaired from mismated native CAD",
+    "Joint axial offsets collapsed to a common plane; no modeled bolt clearance or backlash",
+    "M4 directly against PLA reported; clamp-dependent friction, stiction and wear are not identified or modeled",
+    "CAD meshes are visual only; primitive ground collisions, no robot self-collision",
+    "Tires are 85mm primitive cylinders, not an exported rim/tread CAD",
+    "No rail sag, BMS/current trip, thermal derating or contact sensor model",
+    "Only IMU and leg encoders in actor observations; wheel speed is not directly measured"
+  ]
+}

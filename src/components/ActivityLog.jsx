@@ -8,7 +8,7 @@ export default function ActivityLog({ entries }) {
         </div>
         <span className="live-label">
           <span aria-hidden="true" />
-          Live
+          Local log
         </span>
       </div>
 

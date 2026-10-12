@@ -12,14 +12,14 @@ export default function StatusGrid({ status, currentCommand, speed }) {
     },
     {
       label: "Height live / target",
-      value: status.heightCm
+      value: status.heightCalibrationValid && status.heightCm
         ? `${Number(status.heightCm).toFixed(1)} / ${Number(status.targetHeightCm || 0).toFixed(1)} cm`
-        : "--",
+        : "Uncalibrated",
       led: status.standingEnabled ? "on" : "neutral",
     },
     {
       label: "Extension live / target",
-      value: `${Number(status.extensionPercent || 0).toFixed(0)} / ${Number(status.targetExtensionPercent || 0).toFixed(0)}%`,
+      value: status.heightCalibrationValid ? `${Number(status.extensionPercent || 0).toFixed(0)} / ${Number(status.targetExtensionPercent || 0).toFixed(0)}%` : "Uncalibrated",
       led: status.heightCalibrationValid ? "on" : "warn",
     },
     {
@@ -101,7 +101,8 @@ export default function StatusGrid({ status, currentCommand, speed }) {
       <div className="panel-heading">
         <div>
           <span className="section-kicker">Telemetry</span>
-          <h2 id="telemetry-heading">Live outputs</h2>
+          <h2 id="telemetry-heading">Robot telemetry</h2>
+          <p className="panel-sub">{status.online ? "Live feedback from the ESP32" : "Last reported values · robot offline"}</p>
         </div>
       </div>
       <div className="telemetry-list">

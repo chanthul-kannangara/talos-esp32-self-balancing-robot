@@ -1,7 +1,10 @@
-import { KeyRound, LockKeyhole, Mail, ShieldCheck } from "lucide-react";
-import { useCallback, useState } from "react";
+import { ArrowUpRight, KeyRound, LockKeyhole, Mail, Pause, Play, ShieldCheck } from "lucide-react";
+import { lazy, Suspense, useCallback, useState } from "react";
 import { getAuthErrorMessage, resetPassword, signInWithEmail } from "../services/authApi";
 import ThemeToggle from "./ThemeToggle";
+import RobotDiagram from "./RobotDiagram";
+
+const RobotModel = lazy(() => import("./RobotModel"));
 
 export default function LoginPage({ theme, onThemeToggle }) {
   const [email, setEmail] = useState("");
@@ -9,6 +12,7 @@ export default function LoginPage({ theme, onThemeToggle }) {
   const [busyAction, setBusyAction] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [animationPaused, setAnimationPaused] = useState(false);
 
   const runAuthAction = useCallback(async (actionName, action) => {
     setBusyAction(actionName);
@@ -45,19 +49,31 @@ export default function LoginPage({ theme, onThemeToggle }) {
   const isBusy = Boolean(busyAction);
 
   return (
-    <main className="auth-shell">
+    <main className="auth-shell auth-shell--workspace">
+      <header className="auth-topbar">
+        <div className="brand"><div className="brand__mark" aria-hidden="true">T<span /></div><div className="brand__text"><strong>TALOS ONE</strong><p>Robot workspace</p></div></div>
+        <div className="auth-topbar__actions"><span>Made to move.</span><ThemeToggle theme={theme} onToggle={onThemeToggle} /></div>
+      </header>
+      <div className="auth-layout">
+        <section className="auth-intro" aria-labelledby="welcome-heading">
+          <span className="auth-intro__tag"><span aria-hidden="true" />MEET YOUR ROBOT WORKSPACE</span>
+          <h2 id="welcome-heading">BALANCE.<br />BY DESIGN.</h2>
+          <p>A clear view. Complete control.<br /> Bring every TALOS movement into focus.</p>
+          <div className={`auth-robot-stage ${animationPaused ? "is-paused" : ""}`}>
+            <span className="auth-robot-annotation">TALOS / 01</span>
+            <Suspense fallback={<RobotDiagram animated={!animationPaused} extension={40} />}>
+              <RobotModel paused={animationPaused} />
+            </Suspense>
+            <span className="auth-robot-caption">Your CAD, brought to life. Assem1 / 3D preview.</span>
+            <button className="animation-toggle" type="button" onClick={() => setAnimationPaused((paused) => !paused)} aria-label={animationPaused ? "Play robot animation" : "Pause robot animation"} aria-pressed={animationPaused}>
+              {animationPaused ? <Play size={15} aria-hidden="true" /> : <Pause size={15} aria-hidden="true" />}
+            </button>
+          </div>
+        </section>
       <section className="auth-card" aria-labelledby="auth-heading">
         <div className="auth-card__header">
-          <div className="auth-brand">
-            <div className="brand__mark" aria-hidden="true">
-              T
-            </div>
-            <div>
-              <strong>TALOS ONE</strong>
-              <span>Robot control</span>
-            </div>
-          </div>
-          <ThemeToggle theme={theme} onToggle={onThemeToggle} />
+          <span className="section-kicker">Operator access</span>
+          <ArrowUpRight size={22} aria-hidden="true" />
         </div>
 
         <div className="auth-panel">
@@ -66,8 +82,8 @@ export default function LoginPage({ theme, onThemeToggle }) {
               <ShieldCheck size={14} aria-hidden="true" strokeWidth={2} />
               Secure access
             </span>
-            <h1 id="auth-heading">Sign in</h1>
-            <p>Use your account to open the robot console.</p>
+            <h1 id="auth-heading">WELCOME<br />BACK.</h1>
+            <p>Sign in to your TALOS workspace.</p>
           </div>
 
           <form className="auth-form" onSubmit={handleEmailSignIn}>
@@ -104,7 +120,8 @@ export default function LoginPage({ theme, onThemeToggle }) {
 
             <button className="auth-submit" type="submit" disabled={isBusy}>
               <KeyRound size={15} aria-hidden="true" strokeWidth={2} />
-              {busyAction === "email" ? "Signing in…" : "Sign in"}
+              {busyAction === "email" ? "Signing in…" : "Open workspace"}
+              <ArrowUpRight size={17} aria-hidden="true" />
             </button>
           </form>
 
@@ -116,8 +133,11 @@ export default function LoginPage({ theme, onThemeToggle }) {
           >
             Reset password
           </button>
+          <p className="auth-privacy-note"><LockKeyhole size={13} aria-hidden="true" />Authenticated access to your robot controls.</p>
         </div>
       </section>
+      </div>
+      <footer className="auth-footer"><span>01 / MOVE WITH INTENTION</span><span>TALOS ONE · ROBOT CONTROL</span></footer>
     </main>
   );
 }

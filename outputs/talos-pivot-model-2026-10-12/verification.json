@@ -1,0 +1,354 @@
+{
+  "pins": [
+    {
+      "pin": "left_support_hip",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "left_knee",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "left_follower",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "left_upper_retainer",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "left_support_retainer",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "right_support_hip",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "right_knee",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "right_follower",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "right_upper_retainer",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    },
+    {
+      "pin": "right_support_retainer",
+      "shaft_to_pivot_axis_residual_m": 0.0
+    }
+  ],
+  "wheel_servos": [
+    {
+      "side": "left",
+      "wheel_output_coaxial_residual_m": 0.0,
+      "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+      "output_shaft_rotates_with_wheel": true
+    },
+    {
+      "side": "right",
+      "wheel_output_coaxial_residual_m": 0.0,
+      "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+      "output_shaft_rotates_with_wheel": true
+    }
+  ],
+  "fourbar_closure_errors_m": [
+    6.712992841771687e-12,
+    1.1620925222941153e-11
+  ],
+  "hip_angles_deg": [
+    50.0,
+    47.065150280809895
+  ],
+  "total_mass_kg_illustrative": 1.9999999999999996,
+  "actuators": 4,
+  "positions": 15,
+  "velocities": 14,
+  "equalities": 2,
+  "mass_and_inertia_match_baseline": true,
+  "pose_checks": [
+    {
+      "pins": [
+        {
+          "pin": "left_support_hip",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_knee",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_follower",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_upper_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_support_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_support_hip",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_knee",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_follower",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_upper_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_support_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        }
+      ],
+      "wheel_servos": [
+        {
+          "side": "left",
+          "wheel_output_coaxial_residual_m": 0.0,
+          "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+          "output_shaft_rotates_with_wheel": true
+        },
+        {
+          "side": "right",
+          "wheel_output_coaxial_residual_m": 0.0,
+          "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+          "output_shaft_rotates_with_wheel": true
+        }
+      ],
+      "fourbar_closure_errors_m": [
+        1.4602315517801675e-11,
+        1.2739940178666502e-11
+      ],
+      "hip_angles_deg": [
+        54.31899426599083,
+        51.20784866334461
+      ],
+      "total_mass_kg_illustrative": 1.9999999999999996,
+      "actuators": 4,
+      "positions": 15,
+      "velocities": 14,
+      "equalities": 2,
+      "mass_and_inertia_match_baseline": true,
+      "left_driven_hip_height_m": 0.15,
+      "wheel_center_heights_m": [
+        0.04249999998109033,
+        0.04250000004672247
+      ]
+    },
+    {
+      "pins": [
+        {
+          "pin": "left_support_hip",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_knee",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_follower",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_upper_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_support_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_support_hip",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_knee",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_follower",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_upper_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_support_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        }
+      ],
+      "wheel_servos": [
+        {
+          "side": "left",
+          "wheel_output_coaxial_residual_m": 0.0,
+          "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+          "output_shaft_rotates_with_wheel": true
+        },
+        {
+          "side": "right",
+          "wheel_output_coaxial_residual_m": 0.0,
+          "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+          "output_shaft_rotates_with_wheel": true
+        }
+      ],
+      "fourbar_closure_errors_m": [
+        1.0626713040200864e-11,
+        1.659629681279586e-11
+      ],
+      "hip_angles_deg": [
+        43.49599424112397,
+        40.868890938207656
+      ],
+      "total_mass_kg_illustrative": 1.9999999999999996,
+      "actuators": 4,
+      "positions": 15,
+      "velocities": 14,
+      "equalities": 2,
+      "mass_and_inertia_match_baseline": true,
+      "left_driven_hip_height_m": 0.18,
+      "wheel_center_heights_m": [
+        0.04250000000617321,
+        0.04249999999214793
+      ]
+    },
+    {
+      "pins": [
+        {
+          "pin": "left_support_hip",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_knee",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_follower",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_upper_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "left_support_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_support_hip",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_knee",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_follower",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_upper_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        },
+        {
+          "pin": "right_support_retainer",
+          "shaft_to_pivot_axis_residual_m": 0.0
+        }
+      ],
+      "wheel_servos": [
+        {
+          "side": "left",
+          "wheel_output_coaxial_residual_m": 0.0,
+          "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+          "output_shaft_rotates_with_wheel": true
+        },
+        {
+          "side": "right",
+          "wheel_output_coaxial_residual_m": 0.0,
+          "wheel_60_degree_rotation_keeps_servo_case_fixed": true,
+          "output_shaft_rotates_with_wheel": true
+        }
+      ],
+      "fourbar_closure_errors_m": [
+        9.616803798686946e-12,
+        3.60895227427484e-12
+      ],
+      "hip_angles_deg": [
+        30.875416811183506,
+        29.09696587316177
+      ],
+      "total_mass_kg_illustrative": 1.9999999999999996,
+      "actuators": 4,
+      "positions": 15,
+      "velocities": 14,
+      "equalities": 2,
+      "mass_and_inertia_match_baseline": true,
+      "left_driven_hip_height_m": 0.21,
+      "wheel_center_heights_m": [
+        0.0425000000409614,
+        0.042500000041325564
+      ]
+    }
+  ],
+  "dynamics_regression": {
+    "steps": 1000,
+    "simulated_seconds": 2.0,
+    "maximum_qpos_difference_from_baseline": 0.0,
+    "finite_state": true,
+    "scope": "Uncontrolled smoke test and visual-only regression, not a balancing result"
+  },
+  "archived_assessment_unchanged": true,
+  "original_cad_hashes_unchanged": true,
+  "source_cad_file_count": 32,
+  "model_sha256": "9606a1ea1bed8ffe3ee64cfde291cb6a0c5e6075a30101763e5336094839bb80",
+  "hardware_mapping_sha256": "b4a4d1351246498ad4511210d6a515ef97892935fdcdc156a3eb09eda7235c53",
+  "all_meshes_sha256": {
+    "assets/body_0.obj": "ffd2e040ecf193192fae4833225ea28f1351dbc2a0893f4351561aeed6d3ecb3",
+    "assets/body_1.obj": "7ca740e530a43eca6e2a8166c699df74683db661952a95358a551cc077222e27",
+    "assets/body_2.obj": "fb8f970eefb5c76388d2a1fd9338379b92f39bb23cb0d1db9330a3fb3ba6b36e",
+    "assets/left_upper_0.obj": "6e9efe41d332455e88bbeaa74192f71eca14501d6aeea0fdd6e5e7996eaa51a3",
+    "assets/left_lower_0.obj": "eb3947b8564f85e89a8769196c5f99fc96686cd4de47759d5ed76b1bcb7f5ee6",
+    "assets/left_support_0.obj": "04eab025284835c22ec32741c15943fd1cc45561c9a7326cceb9f50af9a6f5bf",
+    "assets/right_upper_0.obj": "637f1e5392fdd8348d28153dae549a452ea5aae99f8bfdd9b0378e193644511a",
+    "assets/right_lower_0.obj": "c350afd738595f4729c3fa0f435410a8cf5083441666a0545d1c68ab26fcdb85",
+    "assets/right_support_0.obj": "d9d0d0bc3579e8d9c0d3ff3b5822b52fee950804046af5210faa60c80887f173",
+    "assets/left_upper_retaining_clip.obj": "db15e7ff94d489b8df90596a4e5a6b28a9e7e8c01d7faee39e4d388c7cb1d444",
+    "assets/left_support_retaining_clip.obj": "dcd8b0ee95daaadde5194c558189ae7fff3f2efd9a224cbb2044388e7f111f97",
+    "assets/left_support_hip_head.obj": "7144a48fb25cbd1cc1f1b0f180eb0a232eeaf053cdecaa69cf22ebeee54f9466",
+    "assets/left_support_hip_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/left_knee_head.obj": "7144a48fb25cbd1cc1f1b0f180eb0a232eeaf053cdecaa69cf22ebeee54f9466",
+    "assets/left_knee_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/left_follower_head.obj": "7144a48fb25cbd1cc1f1b0f180eb0a232eeaf053cdecaa69cf22ebeee54f9466",
+    "assets/left_follower_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/left_upper_retainer_socket.obj": "25ee71063a49a68519e6a45260bd3596288a8263e7690bec9e71a130ab786582",
+    "assets/left_upper_retainer_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/left_support_retainer_socket.obj": "40699fe470d7ffb6586dbbc4712746c5cf2d3e50de38b7a4601a670339d67531",
+    "assets/left_support_retainer_nut.obj": "28594f1c4463c2501396b18460df2fb30d8a857f1cd53ef6ce224c62f1383fc6",
+    "assets/right_upper_retaining_clip.obj": "1fcfc8f933a98446d1b583c633ea2bb0057f808bbd788f951dd3f6571a4bdd84",
+    "assets/right_support_retaining_clip.obj": "92acaee9b82aa0e74a577fb151d4350896a5e6f9b995abb467d1e6082977d81e",
+    "assets/right_support_hip_head.obj": "7144a48fb25cbd1cc1f1b0f180eb0a232eeaf053cdecaa69cf22ebeee54f9466",
+    "assets/right_support_hip_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/right_knee_head.obj": "7144a48fb25cbd1cc1f1b0f180eb0a232eeaf053cdecaa69cf22ebeee54f9466",
+    "assets/right_knee_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/right_follower_head.obj": "7144a48fb25cbd1cc1f1b0f180eb0a232eeaf053cdecaa69cf22ebeee54f9466",
+    "assets/right_follower_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/right_upper_retainer_socket.obj": "25ee71063a49a68519e6a45260bd3596288a8263e7690bec9e71a130ab786582",
+    "assets/right_upper_retainer_nut.obj": "1c5b87b3072ccae492635df90395455b69cf86ecb0d6175a41ca90d16e657f7f",
+    "assets/right_support_retainer_socket.obj": "40699fe470d7ffb6586dbbc4712746c5cf2d3e50de38b7a4601a670339d67531",
+    "assets/right_support_retainer_nut.obj": "28594f1c4463c2501396b18460df2fb30d8a857f1cd53ef6ce224c62f1383fc6"
+  },
+  "trained": false,
+  "hardware_motion_performed": false
+}

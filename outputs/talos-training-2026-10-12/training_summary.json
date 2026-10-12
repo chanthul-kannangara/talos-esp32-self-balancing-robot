@@ -1,0 +1,105 @@
+{
+  "status": "Completed bounded offline training study; no hardware-approved policy",
+  "total_training_transitions_across_branches": 393216,
+  "total_physics_steps_during_training": 3932160,
+  "training_wall_seconds": 1132.6836266,
+  "final_branch_policy_steps": 262144,
+  "training_seed_count": 1,
+  "stages": [
+    {
+      "label": "ppo-fixed",
+      "additional_steps": 65536,
+      "policy_total_steps": 65536,
+      "seconds": 193.7663792000003,
+      "reward_variant": "original",
+      "height_curriculum": false
+    },
+    {
+      "label": "ppo-fixed-continued",
+      "additional_steps": 131072,
+      "policy_total_steps": 196608,
+      "seconds": 395.40905049999947,
+      "reward_variant": "original",
+      "height_curriculum": false
+    },
+    {
+      "label": "ppo-posture-height",
+      "additional_steps": 131072,
+      "policy_total_steps": 327680,
+      "seconds": 358.88705329999993,
+      "reward_variant": "dense_posture_and_joint_limit_penalty",
+      "height_curriculum": true
+    },
+    {
+      "label": "ppo-posture-v2",
+      "additional_steps": 65536,
+      "policy_total_steps": 262144,
+      "seconds": 184.62114360000032,
+      "reward_variant": "dense_posture_v2_nonnegative_alive_reward",
+      "height_curriculum": true
+    }
+  ],
+  "final_evaluation": [
+    {
+      "controller": "diagnostic PD baseline",
+      "cases": 24,
+      "survived_10s": 0,
+      "accuracy_passes": 0,
+      "median_survival_s": 0.6000000000000004,
+      "nominal_survival_s": 0.6000000000000004,
+      "nominal_pitch_rms_deg": 21.992238731190717,
+      "nominal_leg_rms_deg": 12.674113586779784,
+      "nominal_drift_m": 0.17975361390242503,
+      "nominal_hip_limit_violation_deg": 2.138671874999993
+    },
+    {
+      "controller": "ppo-fixed-continued",
+      "cases": 24,
+      "survived_10s": 19,
+      "accuracy_passes": 0,
+      "median_survival_s": 10.000000000000009,
+      "nominal_survival_s": 10.000000000000009,
+      "nominal_pitch_rms_deg": 5.328130228235005,
+      "nominal_leg_rms_deg": 14.398343984355172,
+      "nominal_drift_m": 0.5866990085788534,
+      "nominal_hip_limit_violation_deg": 5.302734375
+    },
+    {
+      "controller": "ppo-posture-height",
+      "cases": 24,
+      "survived_10s": 0,
+      "accuracy_passes": 0,
+      "median_survival_s": 0.7800000000000006,
+      "nominal_survival_s": 0.7600000000000006,
+      "nominal_pitch_rms_deg": 18.42968307884829,
+      "nominal_leg_rms_deg": 12.596288180881222,
+      "nominal_drift_m": 0.1623740242424283,
+      "nominal_hip_limit_violation_deg": 5.478515625
+    },
+    {
+      "controller": "ppo-posture-v2",
+      "cases": 24,
+      "survived_10s": 22,
+      "accuracy_passes": 0,
+      "median_survival_s": 10.000000000000009,
+      "nominal_survival_s": 10.000000000000009,
+      "nominal_pitch_rms_deg": 5.309280863520608,
+      "nominal_leg_rms_deg": 14.380776946758766,
+      "nominal_drift_m": 0.27283617531585674,
+      "nominal_hip_limit_violation_deg": 5.0390625
+    }
+  ],
+  "gate": {
+    "hardware_export_allowed": false,
+    "firmware_changed": false,
+    "hardware_tested": false,
+    "robot_commands_sent": false,
+    "reasons": [
+      "No candidate approved by the complete balance and posture criteria",
+      "2 kg is a user estimate, not a scale measurement",
+      "CoM, inertia, servo PWM mapping, lag and supply behavior uncalibrated",
+      "Bolt/PLA friction, stiction, backlash and fastener contact not identified"
+    ],
+    "firmware_sha256_unchanged": true
+  }
+}

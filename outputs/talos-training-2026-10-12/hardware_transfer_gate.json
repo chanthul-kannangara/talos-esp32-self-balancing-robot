@@ -1,0 +1,13 @@
+{
+  "hardware_export_allowed": false,
+  "firmware_changed": false,
+  "hardware_tested": false,
+  "robot_commands_sent": false,
+  "reasons": [
+    "No candidate approved by the complete balance and posture criteria",
+    "2 kg is a user estimate, not a scale measurement",
+    "CoM, inertia, servo PWM mapping, lag and supply behavior uncalibrated",
+    "Bolt/PLA friction, stiction, backlash and fastener contact not identified"
+  ],
+  "firmware_sha256_unchanged": true
+}

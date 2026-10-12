@@ -1,0 +1,25 @@
+{
+  "name": "nominal_pitch_+0",
+  "group": "nominal",
+  "seed": 1003,
+  "pitch_deg": 0,
+  "duration_s": 10.000000000000009,
+  "fell": false,
+  "survived": true,
+  "return": 235.35043992605517,
+  "pitch_rms_deg": 5.3273816007456745,
+  "joint_rms_deg": 14.39521881035568,
+  "speed_rms_m_s_truth": 0.04409336102121522,
+  "max_closure_m": 6.872094333654751e-05,
+  "max_abs_pitch_deg": 9.152123134210665,
+  "max_abs_roll_deg": 3.127354494058965,
+  "max_hip_limit_violation_deg": 5.302734375,
+  "drift_m": 0.596084846983547,
+  "push_applied_seconds": 0.0,
+  "final_target_to_goal_error_deg": [
+    0.0,
+    0.0
+  ],
+  "wheel_saturation_fraction": 0.002,
+  "pass": false
+}

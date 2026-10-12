@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-12",
+  "total_mass_kg_user_estimate": 2.0,
+  "mass_measured_on_scale": false,
+  "user_statement": "its about 2 kg i do not have a scale to check",
+  "simulation_nominal_mass_kg": 2.0,
+  "mass_change_required_for_this_estimate": false,
+  "training_mass_randomization_kg": [1.8, 2.2],
+  "randomization_is_not_a_confidence_interval": true,
+  "center_of_mass_measured": false,
+  "servo_torque_speed_lag_and_pwm_mapping_identified": false,
+  "joint_friction_and_bolt_preload_identified": false,
+  "rail_voltage_sag_under_load_measured": false
+}
